@@ -1,5 +1,5 @@
 package com.assignment.entity;
 
 public enum Role {
-	ROLE_STAFF, ROLE_ADMIN
+	ROLE_CUSTOMER,ROLE_STAFF, ROLE_ADMIN
 }

@@ -1,13 +1,14 @@
 package com.assignment.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,17 +17,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Supplier implements Serializable {
+@Table(name = "Products")
+public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String fullname;
-	private String email;
-	private String phone;
-	private String address;
-	@OneToMany(mappedBy = "supplier")
-	private List<Receive> listReceive;
-	@OneToMany(mappedBy = "supplier")
-	private List<Order> listOrder;
+	private String name;
+	private Integer quantity;
+	private String unit;
+	private String type;
+	@ManyToOne
+	@JoinColumn(name = "packageId")
+	private Package packageId;
 }
