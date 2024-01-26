@@ -8,7 +8,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,15 +21,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Category implements Serializable {
+@Table(name = "Packages")
+public class Package implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
-	private String image;
 	@Column(columnDefinition = "TEXT")
 	private String notes;
-	@OneToMany(mappedBy = "category")
-	private List<Receive> listReceives;
+	@ManyToOne
+	@JoinColumn(name = "warehouseId")
+	private WareHouse wareHouse;
+	@OneToOne
+	@JoinColumn(name = "orderId")
+	private Order order;
+	@OneToMany(mappedBy = "packageId")
+	private List<Product> listProducts;
 }

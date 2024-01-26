@@ -23,15 +23,16 @@ public class User implements Serializable{
 	@Id
 	private String username;
 	private String password;
+	private String fullname;
 	private boolean active;
 	private String email;
 	private String phone;
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	@OneToMany(mappedBy = "user")
-	private List<Receive> listReceive;
-	@OneToMany(mappedBy = "user")
-	private List<Order> listOrder;
-	@OneToMany(mappedBy = "user")
 	private List<WareHouse> listWareHouses;
+	@OneToMany(mappedBy = "userCustomer")
+	private List<Order> listOrder1;
+	@OneToMany(mappedBy = "userConfirm")
+	private List<Order> listOrder2;
 }
