@@ -35,4 +35,6 @@ public class User implements Serializable{
 	private List<Order> listOrder1;
 	@OneToMany(mappedBy = "userConfirm")
 	private List<Order> listOrder2;
+	@OneToMany(mappedBy = "user")
+	private List<Trip> listTrips;
 }

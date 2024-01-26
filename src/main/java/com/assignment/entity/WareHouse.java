@@ -34,4 +34,6 @@ public class WareHouse implements Serializable{
 	private User user;
 	@OneToMany(mappedBy = "wareHouse")
 	private List<Package> listPackages;
+	@OneToMany(mappedBy = "wareHouse")
+	private List<Traffic> listTraffics;
 }

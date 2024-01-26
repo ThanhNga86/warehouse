@@ -1,11 +1,14 @@
 package com.assignment.configuration;
 
+import java.util.Collection;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -37,8 +40,20 @@ public class SecurityConfig {
 			).formLogin(
 				form->form
 				.loginPage("/login").loginProcessingUrl("/authenticateTheUser")
-				.defaultSuccessUrl("/dashboard", true)
 				.permitAll()
+				.successHandler((request, response, authentication) -> {
+			        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+			        
+			        for (GrantedAuthority authority : authorities) {
+			            if (authority.getAuthority().equals("ROLE_CUSTOMER")) {
+			                response.sendRedirect("/dashboard");
+			                return;
+			            }
+			        }
+			        
+			        // Mặc định, chuyển hướng đến URL "/dashboard"
+			        response.sendRedirect("/dashboard");
+			    })
 			).logout(
 				logout->logout
 				.logoutSuccessUrl("/login")

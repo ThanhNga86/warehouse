@@ -36,6 +36,9 @@ public class Order implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "userConfirm")
 	private User userConfirm;
+	@ManyToOne
+	@JoinColumn(name = "tripId")
+	private Trip trip;
 	@OneToOne(mappedBy = "order")
 	private Package packageId;
 }

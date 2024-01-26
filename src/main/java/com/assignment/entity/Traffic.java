@@ -2,13 +2,14 @@ package com.assignment.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,10 @@ public class Traffic implements Serializable{
 	private String status;
 	private String type;
 	private Date dateBuy;
-	@OneToMany(mappedBy = "traffic")
-	private List<Trip> listTrips;
+	@OneToOne
+	@JoinColumn(name = "tripId")
+	private Trip trip;
+	@ManyToOne
+	@JoinColumn(name = "warehouseId")
+	private WareHouse wareHouse;
 }
