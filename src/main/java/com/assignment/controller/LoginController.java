@@ -5,13 +5,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
+
 public class LoginController {
 
-	@GetMapping("")
+	@GetMapping("/login")
 	public String Login() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
@@ -22,5 +23,11 @@ public class LoginController {
 		}
 		
 	}
+	@GetMapping("/doipass")
+		public String passEmail() {
+			
+		return "account/login/doipass";
+		}
+	
 	
 }
