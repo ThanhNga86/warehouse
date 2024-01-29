@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org/">
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dashboard</title>
+<script src="/lib/jquery/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="/lib/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/fontawesome-free-6.4.2-web/css/all.min.css">	
+<link rel="stylesheet" href="/css/admin/menu.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+	<form>
+		<input type="text" id="name">
+		<button type="button" for="name">tìm kiếm</button>
+	</form>
+	<table  border="1" style="width:100% ; font-size: large; text : center;">
+		<tr>
+			<td>capacity</td>
+			<td>date_buy</td>
+			<td>name</td>
+			<td>status</td>
+			<td>type</td>
+			<td>trip_id</td>
+			<td>warehouse_id</td>
+			<td></td>
+		</tr>
+	<c:forEach var="item" items="${page.content}">
+		
+		<tr>
+			<td>${item.}</td>
+			<td>${item.}</td>
+			<td>${item.}</td>
+			<td>${item.}</td>
+			<td>${item.}</td>
+			<td>${item.}</td>
+			<td>${item.}</td>
+			
+		</tr>
+	</c:forEach>
+	</table>
+	<button type="button"><a href="/search-and-page?p=0">First</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.number-1}">Previous</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.number+1}">Next</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.totalPages-1}">Last</a></button>
+	
+	
+	
+	
+	<ul>
+		<li>Số thực thể hiện tại: ${page.numberOfElements}</li>
+		<li>Trang số: ${page.number}</li>
+		<li>Kích thước trang: ${page.size}</li>
+		<li>Tổng số thực thể: ${page.totalElements}</li>
+		<li>Tổng số trang: ${page.totalPages}</li>
+	</ul>
+</body>
+<script src="/lib/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/admin/menu.js"></script>
+</html>
