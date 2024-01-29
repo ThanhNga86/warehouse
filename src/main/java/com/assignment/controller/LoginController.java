@@ -18,7 +18,9 @@ public class LoginController {
 			return "redirect:/dashboard";
 		} else {
 			return "account/login/login";
+			//return "redirect:/dashboard";
 		}
+		
 	}
 	
 }
