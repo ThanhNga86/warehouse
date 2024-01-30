@@ -11,8 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Report implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
-	Serializable group;
+	Serializable groups;
 	Double sum;
 	Long count;
 }

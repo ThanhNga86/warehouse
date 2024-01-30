@@ -44,8 +44,8 @@ public class warehouseController {
 	@RequestMapping("/warehouse/edit/{id}")
 	public String edit(Model model, @PathVariable("id") Long id) {
 		WareHouse WHitem = Warehousedao.findById(id).get();
-		Long.parseLong("S(WHitem.id)");
-		model.addAttribute("WHitem", WHitem);
+		String idWhiem = String.valueOf(WHitem.getId());
+		model.addAttribute("WHitem", idWhiem);
 		List<WareHouse> WHitems = Warehousedao.findAll();
 		model.addAttribute("WHitems", WHitems);
 	return "admin/layout/warehouse";
