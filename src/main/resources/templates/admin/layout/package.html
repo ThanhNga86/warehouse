@@ -5,11 +5,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>package</title>
-<script src="/lib/jquery/jquery-3.7.1.min.js"></script>
-<link rel="stylesheet" href="/lib/bootstrap-5.3.1-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/lib/fontawesome-free-6.4.2-web/css/all.min.css">	
-<link rel="stylesheet" href="/css/admin/menu.css">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	<button href="#" style="margin-left: 86%;" type="button" class="btn btn-secondary">chuyển đến product</button>
@@ -43,8 +38,7 @@
 	<c:forEach th:each="item :${WHitems}">
 		
 		<tr>
-			
-			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.id}"></span></td>
 			<td><span th:text="${item.}"></span></td>
 			<td><span th:text="${item.}"></span></td>
 			<td><a href="/warehouse/edit/${WHitem.id}">Edit</a></td>
@@ -62,6 +56,4 @@
 		<button type="button" class="btn btn-secondary">Sửa</button>
 	</div>
 </body>
-<script src="/lib/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
-<script src="/js/admin/menu.js"></script>
 </html>
