@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="https://www.thymeleaf.org/">
-<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Dashboard</title>
+<title>package</title>
 <script src="/lib/jquery/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" href="/lib/bootstrap-5.3.1-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/lib/fontawesome-free-6.4.2-web/css/all.min.css">	
@@ -13,28 +12,41 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+	<button href="#" style="margin-left: 86%;" type="button" class="btn btn-secondary">chuyển đến product</button>
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="notes_pk" placeholder="notes package">
+	  <label for="notes_pk">notes</label>
+	</div>
+
+	<div class="form-floating">
+	  <input type="number" class="form-control" id="order_id" placeholder="order id">
+	  <label for="order id">order id</label>
+	</div>
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="warehouse_id" placeholder="warehouse id">
+	  <label for="warehouse id">warehouse id</label>
+	</div>
+	
+	
+	
 	<form action="search-key" method="post">
 		<input name="keywords" th:value="*{keywords}">
 			<button>Search</button>
 	</form>
 	<table  border="1" style="width:100% ; font-size: large; text : center;">
 		<tr>
-			<td>Address</td>
-			<td>capacity</td>
-			<td>name</td>
-			<td>phone</td>
-			<td>User_id</td>
+			<td>notes</td>
+			<td>order id</td>
+			<td>warehouse id</td>
 			<td></td>
 		</tr>
 	<c:forEach th:each="item :${WHitems}">
 		
 		<tr>
 			
-			<td><span th:text="${item.address}"></span></td>
-			<td><span th:text="${item.capacity}"></span></td>
-			<td><span th:text="${item.name}"></span></td>
-			<td><span th:text="${item.phone}"></span></td>
-			<td><span th:text="${item.name}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
 			<td><a href="/warehouse/edit/${WHitem.id}">Edit</a></td>
 		</tr>
 	</c:forEach>
@@ -44,16 +56,11 @@
 	<button type="button"><a href="/search-and-page?p=${page.number+1}">Next</a></button>
 	<button type="button"><a href="/search-and-page?p=${page.totalPages-1}">Last</a></button>
 	
-	
-	
-	
-	<ul>
-		<li>Số thực thể hiện tại: ${page.numberOfElements}</li>
-		<li>Trang số: ${page.number}</li>
-		<li>Kích thước trang: ${page.size}</li>
-		<li>Tổng số thực thể: ${page.totalElements}</li>
-		<li>Tổng số trang: ${page.totalPages}</li>
-	</ul>
+	<div style="text-align: center;">
+		<button type="button" class="btn btn-secondary">Thêm</button>
+		<button type="button" class="btn btn-secondary">xóa</button>
+		<button type="button" class="btn btn-secondary">Sửa</button>
+	</div>
 </body>
 <script src="/lib/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/admin/menu.js"></script>
