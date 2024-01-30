@@ -23,11 +23,16 @@ public class LoginController {
 		}
 		
 	}
-	@GetMapping("/doipass")
-		public String passEmail() {
-			
-		return "account/login/doipass";
-		}
+	 @PostMapping("")
+	    public String handleRequest() {
+	        boolean condition = true; // Kiểm tra một điều kiện nào đó
+
+	        if (condition) {
+	            return "redirect:/List_warehouse"; // Chuyển đến trang page1.html
+	        } else {
+	            return "redirect:/Traffic"; // Chuyển đến trang page2.html
+	        }
+	    }
 	
 	
 }
