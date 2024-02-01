@@ -21,7 +21,7 @@ public class PackageController {
 		model.addAttribute("WHitem", WHitem);
 		List<WareHouse> WHitems = Warehousedao.findAll();
 		model.addAttribute("WHitems", WHitems);
-		return "admin/package/package";
+		return "/admin/package/package";
 	}
 	
 }
