@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer View Detail</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="card col-4" th:each="package : ${listPackage}" style="width:18rem;">
+				<div class="card-body">
+					<h5 class="card-title" th:text="${package.id}"></h5>
+					<table>
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Unit</th>
+							<th scope="col">Type</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="product : ${package.listProducts}">
+							<th scope="row" th:text="${product.id}"></th>
+							<th th:text="${product.name}"></th>
+							<th th:text="${product.quantity}"></th>
+							<th th:text="${product.unit}"></th>
+							<th th:text="${product.type}"></th>
+						</tr>
+					</tbody>
+					</table> 
+					<div>Location: <span th:text="${package.address}"></span></div>
+					<textarea rows="3" cols="3" th:text="${package.notes}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
