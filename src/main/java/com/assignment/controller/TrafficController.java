@@ -44,7 +44,7 @@ public class TrafficController {
 		model.addAttribute("TFitems", TFitems);
 		// Biến item: buộc lên form
 		// Biến items: hiển thị lên bảng
-		return "admin/traffic/menu_traffic";
+		return "/admin/traffic/menu_traffic";
 	}
 
 	//
