@@ -23,7 +23,11 @@
 			<ul>
 				<a href="/dashboard" sec:authorize="hasAnyRole('ADMIN', 'STAFF')"><li><span class="icon"><i class="fa-solid fa-gauge"></i></span>Dashboard</li></a>
 				
+<<<<<<< HEAD
+				<a href="customer/view"><li><span class="icon"><i class="fa-solid fa-users"></i></span>Khách hàng</li></a>
+=======
 				<a href="/users" sec:authorize="hasAnyRole('ADMIN')"><li><span class="icon"><i class="fa-solid fa-users"></i></span>Khách hàng</li></a>
+>>>>>>> b2a46965f2cd2b1e80d029987062bf7d16a3a343
 				
 				<a href="/staff" sec:authorize="hasAnyRole('ADMIN')"><li><span class="icon"><i class="fa-solid fa-users"></i></span>Nhân viên</li></a>
 				

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer View</title>
+</head>
+<body>
+	<table class="table">
+		<thead >
+			<tr >
+				<th scope="col" >Order ID</th>
+				<th scope="col" >Create Date</th>
+				<th scope="col" >Departerment Point</th>
+				<th scope="col" >Destination Point</th>
+				<th scope="col" >Quantity</th>
+				<th scope="col" >User Confirm</th>
+				<th scope="col" >Quantity</th>
+				<th scope="col" >Trip ID</th>
+				<th scope="col" >Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="order : ${listOrder}">
+				<th  th:text="${order.id}"></th>
+				<th  th:text="${order.createDate}"></th>
+				<th  th:text="${order.departermentPoint"></th>
+				<th  th:text="${order.destinationPoint}"></th>
+				<th  th:text="${order.quantity}"></th>
+				<th  th:text="${order.userConfirm.id}"></th>
+				<th  th:text="${order.quantity}"></th>
+				<th  th:text="${order.trip.id}"></th>
+				<th><a th:href="@{'/customer/'+ ${order.trip.id}+'/'+${order.id}">Detail</a></th>
+			</tr>
+		</tbody>
+		</table>
+</body>
+</html>
