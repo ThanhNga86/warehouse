@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/images/icon-logo.png">
+<link rel="stylesheet" href="/css/admin/order.css">
+<title>Đơn hàng - quản lý kho hàng</title>
+</head>
+<body>
+	<div th:insert="~{/admin/layout/menu}"></div>
+	
+	<div id="containerOrder">
+		<div class="order">
+			<form action="/package/createOrder" class="formCreateOrder" method="post">
+				<h4>Người nhận</h4>
+				<div class="form-group">
+					<label>Số điện thoại khách hàng</label>
+					<input type="number" name="phone" class="form-control">
+					<div class="message msPhone"></div>
+				</div>
+				<div class="form-group">
+					<label>Tên khách hàng</label>
+					<input type="text" name="fullname" class="form-control">
+					<div class="message msFullname"></div>
+				</div>
+				<div class="form-group">
+					<label>Địa chỉ chi tiết</label>
+					<input type="text" name="destinationPoint" class="form-control">
+					<div class="message msDestinationPoint"></div>
+				</div>
+				<br>
+				
+				<h4>Sản phẩm</h4>
+				<div class="form-product">
+					<div class="form-addProduct mb-2">
+						<div class="uploadImage">
+							<input type="file" name="fileImage" class="fileImage">
+							<label class="lbFileImage">
+								<i class="fa-solid fa-camera"></i>
+								<img class="showImage">
+							</label>
+							<div class="message msProduct"></div>
+						</div>
+						
+						<div class="form-right">
+							<div class="form-group mx-2">
+								<input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
+								<div class="message msNameProduct"></div>
+							</div>
+							<div class="form-group mx-2">
+								<input type="number" name="name" class="form-control" placeholder="Nhập khối lượng">
+								<div class="message msMass"></div>
+							</div>
+							<div class="form-group mx-2">
+								<input type="number" name="name" class="form-control" placeholder="Nhập số lượng">
+								<div class="message msQuantity"></div>
+							</div>
+						</div>
+						
+						<div class="create-form"><i class="fa-solid fa-plus"></i></div>
+						<div class="delete-form"><i class="fa-solid fa-xmark"></i></div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+<script src="/js/admin/order.js"></script>
+</html>

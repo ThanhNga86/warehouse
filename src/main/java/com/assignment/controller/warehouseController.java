@@ -22,14 +22,36 @@ import com.assignment.repo.WareHouseRepository;
 
 
 
+
 @Controller
 public class warehouseController {
 	@Autowired
 	WareHouseRepository Warehousedao;
-	
 	@Autowired
 	SessionService session;
+<<<<<<< HEAD
 	
+	@GetMapping("/warehouse/addWareHouse")
+	public String addPackage(Model model) {
+		WareHouse WHitem = new WareHouse();
+		model.addAttribute("WHitem", WHitem);
+		List<WareHouse> WHitems = Warehousedao.findAll();
+		model.addAttribute("WHitems", WHitems);
+		return "admin/warehouse/warehouse";
+	}
+	
+=======
+>>>>>>> 05c461bce097293f96cf4eb563828ef84f7e4a5e
+	//
+	@RequestMapping("/warehouse/page")
+	public String paginate(Model model,
+		@RequestParam("p") Optional<Integer> p) {
+		 
+		Pageable pageable = PageRequest.of(p.orElse(0), 1);
+		Page<WareHouse> page = Warehousedao.findAll(pageable);
+		model.addAttribute("page", page);
+	return "admin/layout/List_warehouse";
+	}
 	//
 	@GetMapping("/warehouse/addWareHouse")
 	public String index(Model model) {
@@ -54,9 +76,10 @@ public class warehouseController {
 	//
 	@RequestMapping("/warehouse/edit/{id}")
 	public String edit(Model model, @PathVariable("id") Long id) {
+		
 		WareHouse WHitem = Warehousedao.findById(id).get();
-		String idWhiem = String.valueOf(WHitem.getId());
-		model.addAttribute("WHitem", idWhiem);
+		//String idWhiem = String.valueOf(WHitem.getId());
+		model.addAttribute("WHitem", WHitem);
 		List<WareHouse> WHitems = Warehousedao.findAll();
 		model.addAttribute("WHitems", WHitems);
 	return "admin/layout/warehouse";

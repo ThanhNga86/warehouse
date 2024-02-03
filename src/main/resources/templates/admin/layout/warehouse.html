@@ -8,6 +8,7 @@
 <title>Dashboard</title>
 </head>
 <body>
+	
 	<h2>Trang Quản Lí kho</h2>
 	<div class="mb-3">
 	  <label for="formGroupExampleInput" class="form-control">Address</label>
@@ -29,11 +30,12 @@
 	  <label for="formGroupExampleInput5" class="form-control">User_ID</label>
 	  <input type="text" class="form-control" id="formGroupExampleInput5" placeholder="chọn user_id">
 	</div>
+	<h1 th:text="${message}"></h1>
 	<hr>
 	<div style="text-align: center;">
-		<button type="button" class="btn btn-secondary">Thêm</button>
-		<button type="button" class="btn btn-secondary">xóa</button>
-		<button type="button" class="btn btn-secondary">Sửa</button>
+		<button type="submit" class="btn btn-secondary" href="/warehouse/create">Thêm</button>
+		<button type="submit" class="btn btn-secondary">xóa</button>
+		<button type="submit" class="btn btn-secondary">Sửa</button>
 	</div>
 	
 	
