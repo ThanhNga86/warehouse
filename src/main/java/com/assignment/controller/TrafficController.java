@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.assignment.entity.Traffic;
+import com.assignment.entity.Trip;
+import com.assignment.entity.WareHouse;
 import com.assignment.repo.TrafficRepository;
 
 @Controller
@@ -38,9 +40,6 @@ public class TrafficController {
 		Traffic TFitem = new Traffic();
 		model.addAttribute("TFitem", TFitem);
 		List<Traffic> TFitems = TFdao.findAll();
-//		for (Traffic traffic : TFitems) {
-//			System.out.println(traffic.getWareHouse().getId());
-//		}
 		model.addAttribute("TFitems", TFitems);
 		// Biến item: buộc lên form
 		// Biến items: hiển thị lên bảng

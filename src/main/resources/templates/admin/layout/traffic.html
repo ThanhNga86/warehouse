@@ -40,12 +40,14 @@
 	</div>
 	
 	<div class="form-floating">
-	  <input type="text" class="form-control" id="trip_id" placeholder="trip_id" th:value="${TFitem.trip.id}">
+	  <input th:if="${TFitem.trip != null}" type="text" class="form-control" id="trip_id" placeholder="trip_id" th:value="${TFitem.trip.id}">
+	  <input th:if="${TFitem.trip == null}" type="text" class="form-control" id="trip_id" placeholder="trip_id">
 	  <label for="trip_id">trip_id</label>
 	</div>
 	
 	<div class="form-floating mb-3">
-	  <input type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">
+	  <input th:if="${TFitem.wareHouse != null}" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">
+	  <input th:if="${TFitem.wareHouse == null}" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id">
 	  <label for="warehouse_id">warehouse_id</label>
 	</div>
 	
@@ -80,8 +82,8 @@
 			<td><span th:text="${item.name}"></span></td>
 			<td><span th:text="${item.status}"></span></td>
 			<td><span th:text="${item.type}"></span></td>
-			<!--<td><span th:text="${item.trip.id}"></span></td>
-			<td><span th:text="${item.wareHouse.id}"></span></td>-->
+			<td><span th:text="${item.trip.id}"></span></td>
+			<td><span th:text="${item.wareHouse.id}"></span></td>
 			<td><a th:href="'/traffic/edit/'+${item.id}">Edit</a></td>
 			
 		</tr>
@@ -93,15 +95,6 @@
 	<button type="button"><a href="/search-and-page?p=${page.totalPages-1}">Last</a></button>
 	
 	
-	
-	
-	<ul>
-		<li>Số thực thể hiện tại: ${page.numberOfElements}</li>
-		<li>Trang số: ${page.number}</li>
-		<li>Kích thước trang: ${page.size}</li>
-		<li>Tổng số thực thể: ${page.totalElements}</li>
-		<li>Tổng số trang: ${page.totalPages}</li>
-	</ul>
 	
 </body>
 </html>
