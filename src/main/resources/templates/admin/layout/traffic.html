@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dashboard</title>
+</head>
+<body>
+	<form method="post">
+		<div class="form-floating mb-3">
+		  <input type="text" class="form-control" id="id" placeholder="id" th:value="${TFitem.id}">
+		  <label for="id">id</label>
+		</div>
+		
+		
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="capacity" placeholder="capacity" th:value="${TFitem.capacity}">
+	  <label for="capacity">capacity</label>
+	</div>
+	
+	<div class="form-floating">
+	  <input type="text" class="form-control" id="date_buy" placeholder="date_buy" th:value="${TFitem.dateBuy}">
+	  <label for="date_buy">date_buy</label>
+	</div>
+	
+	<div class="form-floating mb-3">
+	  <input type="test" class="form-control" id="name" placeholder="name" th:value="${TFitem.name}">
+	  <label for="name">name</label>
+	</div>
+	
+	<div class="form-floating">
+	  <input type="text" class="form-control" id="status" placeholder="status" th:value="${TFitem.status}">
+	  <label for="status">status</label>
+	</div>
+	
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="type" placeholder="type" th:value="${TFitem.type}">
+	  <label for="type">type</label>
+	</div>
+	
+	<div class="form-floating">
+	  <input type="text" class="form-control" id="trip_id" placeholder="trip_id" th:value="${TFitem.trip.id}">
+	  <label for="trip_id">trip_id</label>
+	</div>
+	
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">
+	  <label for="warehouse_id">warehouse_id</label>
+	</div>
+	
+	<div style="text-align: center;">
+		<button class="btn btn-secondary" >Thêm</button>
+		<button class="btn btn-secondary">xóa</button>
+		<button class="btn btn-secondary" formaction="/traffic/update">Sửa</button>
+	</div>
+	</form>
+	<form>
+		<input type="text" id="name">
+		<button type="button" for="name">tìm kiếm</button>
+	</form>
+	<table  border="1" style="width:100% ; font-size: large; text : center;">
+		<tr>
+			<td>id</td>
+			<td>capacity</td>
+			<td>date_buy</td>
+			<td>name</td>
+			<td>status</td>
+			<td>type</td>
+			<td>trip_id</td>
+			<td>warehouse_id</td>
+			<td></td>
+		</tr>
+	<c:forEach th:each="item :${TFitems}">
+		
+		<tr >
+			<td><span th:text="${item.id}"></span></td>
+			<td><span th:text="${item.capacity}"></span></td>
+			<td><span th:text="${item.dateBuy}"></span></td>
+			<td><span th:text="${item.name}"></span></td>
+			<td><span th:text="${item.status}"></span></td>
+			<td><span th:text="${item.type}"></span></td>
+			<!--<td><span th:text="${item.trip.id}"></span></td>
+			<td><span th:text="${item.wareHouse.id}"></span></td>-->
+			<td><a th:href="'/traffic/edit/'+${item.id}">Edit</a></td>
+			
+		</tr>
+	</c:forEach>
+	</table>
+	<button type="button"><a href="/search-and-page?p=0">First</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.number-1}">Previous</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.number+1}">Next</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.totalPages-1}">Last</a></button>
+	
+	
+	
+	
+	<ul>
+		<li>Số thực thể hiện tại: ${page.numberOfElements}</li>
+		<li>Trang số: ${page.number}</li>
+		<li>Kích thước trang: ${page.size}</li>
+		<li>Tổng số thực thể: ${page.totalElements}</li>
+		<li>Tổng số trang: ${page.totalPages}</li>
+	</ul>
+	
+</body>
+</html>

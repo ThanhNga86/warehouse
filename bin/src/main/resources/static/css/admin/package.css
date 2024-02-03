@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+@media (min-width: 992px) {
+	#containerPackage .package {
+		margin: 60px 0 0 240px;
+	}
+
+	#paging .page>li {
+		display: block;
+		padding: 5px 12px;
+		background-color: deepskyblue;
+	}
+}
+
+@media (max-width: 992px) {
+	#containerPackage .package {
+		margin: 60px 0 0 0;
+	}
+
+	#paging .page>li {
+		display: block;
+		padding: 5px 12px;
+		background-color: deepskyblue;
+	}
+}
+
+@media (max-width: 576px) {
+	#paging .page>li {
+		display: block;
+		font-size: 12px;
+		padding: 5px 12px;
+		background-color: deepskyblue;
+	}
+}
+
+#containerPackage .package {
+	background-color: white;
+	padding: 5px;
+}

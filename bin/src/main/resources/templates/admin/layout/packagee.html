@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>package</title>
+</head>
+<body>
+	<button href="#" style="margin-left: 86%;" type="button" class="btn btn-secondary">chuyển đến product</button>
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="notes_pk" placeholder="notes package">
+	  <label for="notes_pk">notes</label>
+	</div>
+
+	<div class="form-floating">
+	  <input type="number" class="form-control" id="order_id" placeholder="order id">
+	  <label for="order id">order id</label>
+	</div>
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="warehouse_id" placeholder="warehouse id">
+	  <label for="warehouse id">warehouse id</label>
+	</div>
+	
+	
+	
+	<form action="search-key" method="post">
+		<input name="keywords" th:value="*{keywords}">
+			<button>Search</button>
+	</form>
+	<table  border="1" style="width:100% ; font-size: large; text : center;">
+		<tr>
+			<td>notes</td>
+			<td>order id</td>
+			<td>warehouse id</td>
+			<td></td>
+		</tr>
+	<c:forEach th:each="item :${WHitems}">
+		
+		<tr>
+			<td><span th:text="${item.id}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><a href="/warehouse/edit/${WHitem.id}">Edit</a></td>
+		</tr>
+	</c:forEach>
+	</table>
+	<button type="button"><a href="/search-and-page?p=0">First</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.number-1}">Previous</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.number+1}">Next</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.totalPages-1}">Last</a></button>
+	
+	<div style="text-align: center;">
+		<button type="button" class="btn btn-secondary">Thêm</button>
+		<button type="button" class="btn btn-secondary">xóa</button>
+		<button type="button" class="btn btn-secondary">Sửa</button>
+	</div>
+</body>
+</html>

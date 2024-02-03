@@ -22,12 +22,14 @@ import com.assignment.repo.WareHouseRepository;
 
 
 
+
 @Controller
 public class warehouseController {
 	@Autowired
 	WareHouseRepository Warehousedao;
 	@Autowired
 	SessionService session;
+<<<<<<< HEAD
 	
 	@GetMapping("/warehouse/addWareHouse")
 	public String addPackage(Model model) {
@@ -38,8 +40,20 @@ public class warehouseController {
 		return "admin/warehouse/warehouse";
 	}
 	
+=======
+>>>>>>> 05c461bce097293f96cf4eb563828ef84f7e4a5e
 	//
-	@RequestMapping("/warehouse")
+	@RequestMapping("/warehouse/page")
+	public String paginate(Model model,
+		@RequestParam("p") Optional<Integer> p) {
+		 
+		Pageable pageable = PageRequest.of(p.orElse(0), 1);
+		Page<WareHouse> page = Warehousedao.findAll(pageable);
+		model.addAttribute("page", page);
+	return "admin/layout/List_warehouse";
+	}
+	//
+	@GetMapping("/warehouse/addWareHouse")
 	public String index(Model model) {
 		WareHouse WHitem = new WareHouse();
 		model.addAttribute("WHitem", WHitem);
@@ -47,14 +61,25 @@ public class warehouseController {
 		model.addAttribute("WHitems", WHitems);
 		// Biến item: buộc lên form
 		// Biến items: hiển thị lên bảng
-	return "admin/layout/List_warehouse";
+	return "admin/warehouse/menu_warehouse";
+	}
+	@GetMapping("/warehouses")
+	public String indexs(Model model) {
+		WareHouse WHitem = new WareHouse();
+		model.addAttribute("WHitem", WHitem);
+		List<WareHouse> WHitems = Warehousedao.findAll();
+		model.addAttribute("WHitems", WHitems);
+		// Biến item: buộc lên form
+		// Biến items: hiển thị lên bảng
+	return "admin/warehouse/menu_List_warehouse";
 	}
 	//
 	@RequestMapping("/warehouse/edit/{id}")
 	public String edit(Model model, @PathVariable("id") Long id) {
+		
 		WareHouse WHitem = Warehousedao.findById(id).get();
-		String idWhiem = String.valueOf(WHitem.getId());
-		model.addAttribute("WHitem", idWhiem);
+		//String idWhiem = String.valueOf(WHitem.getId());
+		model.addAttribute("WHitem", WHitem);
 		List<WareHouse> WHitems = Warehousedao.findAll();
 		model.addAttribute("WHitems", WHitems);
 	return "admin/layout/warehouse";
