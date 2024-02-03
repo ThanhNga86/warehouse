@@ -1,14 +1,13 @@
 package com.assignment.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PackageController {
+public class OrderController {
 
-	@GetMapping("/package/addPackage")
-	public String addPackage() {
-		return "admin/package/package";
+	@GetMapping("/package/createOrder")
+	public String createOrder() {
+		return "admin/order/order";
 	}
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/images/icon-logo.png">
+<link rel="stylesheet" href="/css/admin/wareshouse.css">
+<title>Dashboard - quản lý kho hàng</title>
+</head>
+<body>
+	<div th:insert="~{/admin/layout/menu}"></div>
+	
+	<div id="containerWarehouse">
+		<div class="warehouse">
+			thông tin các trang hiện ở đây
+			<!--<div th:insert="~{/admin/layout/warehouse}"></div>
+			<div th:insert="~{/admin/layout/List_warehouse}"></div>
+			<div th:insert="~{/admin/layout/Traffic}"></div>
+			<div th:insert="~{/admin/layout/List_Traffic}"></div>
+			<div th:insert="~{/admin/layout/Order}"></div>
+			<div th:insert="~{/admin/layout/package}"></div>-->
+			<div th:insert="~{/admin/layout/product}"></div>
+		</div>
+	</div>
+</body>
+</html>

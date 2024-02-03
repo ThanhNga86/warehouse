@@ -25,11 +25,12 @@ public class Order implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String fullname;
+	private String phone;
 	private String destinationPoint;
 	private String departermentPoint;
 	private String status;
 	private Date createDate = new Date();
-	private Integer quantity;
 	@ManyToOne
 	@JoinColumn(name = "userCustomer")
 	private User userCustomer;

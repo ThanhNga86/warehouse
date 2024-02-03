@@ -36,6 +36,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(
 			configurer->configurer
 			.requestMatchers("/dashboard").authenticated()
+			.requestMatchers("/package/**").authenticated()
 			.anyRequest().permitAll()
 			).formLogin(
 				form->form
@@ -46,7 +47,7 @@ public class SecurityConfig {
 			        
 			        for (GrantedAuthority authority : authorities) {
 			            if (authority.getAuthority().equals("ROLE_CUSTOMER")) {
-			                response.sendRedirect("/dashboard");
+			                response.sendRedirect("/package/addPackage");
 			                return;
 			            }
 			        }
@@ -60,7 +61,7 @@ public class SecurityConfig {
 				.permitAll()
 			).exceptionHandling(
 				configurer->configurer
-				.accessDeniedPage("/error404")
+				.accessDeniedPage("/login")
 			);
 		http.csrf(csrf->csrf.disable());
 		return http.build();
