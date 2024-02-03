@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>order</title>
+</head>
+<body>
+	<button href="#" style="margin-left: 86%;" type="button" class="btn btn-secondary">chuyển đến package</button>
+	<div class="form-floating mb-3">
+	  <input type="datetime" class="form-control" id="create_date" placeholder="create date">
+	  <label for="create_date">create date</label>
+	</div>
+	<div class="form-floating">
+	  <input type="text" class="form-control" id="departerment_point" placeholder="departerment point">
+	  <label for="departerment_point">departerment point</label>
+	</div>
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="destination_point" placeholder="destination point">
+	  <label for="destination_point">destination point</label>
+	</div>
+	<div class="form-floating">
+	  <input type="number" class="form-control" id="quantity" placeholder="quantity">
+	  <label for="quantity">quantity</label>
+	</div>
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="status" placeholder="status">
+	  <label for="status">status</label>
+	</div>
+	<div class="form-floating">
+	  <input type="text" class="form-control" id="trip_id" placeholder="trip id">
+	  <label for="trip id">trip id</label>
+	</div>
+	<div class="form-floating mb-3">
+	  <input type="text" class="form-control" id="user_confirm" placeholder="user confirm">
+	  <label for="user confirm">user confirm</label>
+	</div>
+	<div class="form-floating">
+	  <input type="text" class="form-control" id="user_customer" placeholder="user customer">
+	  <label for="user_customer">user customer</label>
+	</div>
+	
+	<form action="search-key" method="post">
+		<input name="keywords" th:value="*{keywords}">
+			<button>Search</button>
+	</form>
+	<table  border="1" style="width:100% ; font-size: large; text : center;">
+		<tr>
+			<td>create date</td>
+			<td>departerment point</td>
+			<td>destination point</td>
+			<td>quantity</td>
+			<td>status</td>
+			<td>trip id</td>
+			<td>user confirm</td>
+			<td>user customer</td>
+			<td></td>
+		</tr>
+	<c:forEach th:each="item :${WHitems}">
+		
+		<tr>
+			
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><span th:text="${item.}"></span></td>
+			<td><a href="/warehouse/edit/${WHitem.id}">Edit</a></td>
+		</tr>
+	</c:forEach>
+	</table>
+	<button type="button"><a href="/search-and-page?p=0">First</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.number-1}">Previous</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.number+1}">Next</a></button>
+	<button type="button"><a href="/search-and-page?p=${page.totalPages-1}">Last</a></button>
+	
+	<div style="text-align: center;">
+		<button type="button" class="btn btn-secondary">Thêm</button>
+		<button type="button" class="btn btn-secondary">xóa</button>
+		<button type="button" class="btn btn-secondary">Sửa</button>
+	</div>
+</body>
+</html>

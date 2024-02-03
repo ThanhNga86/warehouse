@@ -22,6 +22,7 @@ import com.assignment.repo.WareHouseRepository;
 
 
 
+
 @Controller
 public class warehouseController {
 	@Autowired
@@ -29,7 +30,16 @@ public class warehouseController {
 	
 	@Autowired
 	SessionService session;
-	
+	//
+	@RequestMapping("/warehouse/page")
+	public String paginate(Model model,
+		@RequestParam("p") Optional<Integer> p) {
+		 
+		Pageable pageable = PageRequest.of(p.orElse(0), 1);
+		Page<WareHouse> page = Warehousedao.findAll(pageable);
+		model.addAttribute("page", page);
+	return "admin/layout/List_warehouse";
+	}
 	//
 	@GetMapping("/warehouse/addWareHouse")
 	public String index(Model model) {
@@ -54,9 +64,10 @@ public class warehouseController {
 	//
 	@RequestMapping("/warehouse/edit/{id}")
 	public String edit(Model model, @PathVariable("id") Long id) {
+		
 		WareHouse WHitem = Warehousedao.findById(id).get();
-		String idWhiem = String.valueOf(WHitem.getId());
-		model.addAttribute("WHitem", idWhiem);
+		//String idWhiem = String.valueOf(WHitem.getId());
+		model.addAttribute("WHitem", WHitem);
 		List<WareHouse> WHitems = Warehousedao.findAll();
 		model.addAttribute("WHitems", WHitems);
 	return "admin/layout/warehouse";
