@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/images/icon-logo.png">
+<link rel="stylesheet" href="/css/admin/packages.css">
+<title>Đơn hàng - quản lý kho hàng</title>
+</head>
+<body>
+	<div th:insert="~{/admin/layout/menu}"></div>
+	
+	<div id="containerPackages">
+		<div class="packages">
+			<form action="/packages" method="get" class="fromSearch">
+				<input type="search" name="search" class="searchP form-control w-75" placeholder="Tìm kiếm theo mã số" th:value="${vlSearch}">
+				<button>Search</button>
+			</form>
+			
+			<div class="tableP table-responsive">
+				<table class="table table-bordered mt-2 text-center">
+					<tr>
+						<th>Mã số</th>
+						<th>Người xác nhận</th>
+						<th>Nhà kho</th>
+						<th>Trạng thái</th>
+						<th>Ngày tạo</th>
+						<th>Hành động</th>
+					</tr>
+					
+					<tr th:each="package : ${packages}">
+						<td th:text="${package.id}"></td>
+						<td th:text="${package.order.userConfirm.username}"></td>
+						<td th:text="${package.wareHouse.name}"></td>
+						<td class="statusOrder" th:text="${package.order.status}"></td>
+						<td th:text="${#dates.format(package.order.createDate, 'dd-MM-yyyy mm:H')}"></td>
+						<td>
+							<span class="btnAccept" th:id="${package.id}"><i class="fa-regular fa-square-check"></i> Accept</span>
+							<span class="btnCancel" th:id="${package.id}"><i class="fa-solid fa-xmark"></i> Cancel</span>
+							<span class="btnRestore" th:id="${package.id}"><i class="fa-solid fa-clock-rotate-left"></i> Restore</span>
+							<span class="btnReturn"><i class="fa-solid fa-arrow-up"></i> Return</span>
+							<span class="btnDetail" th:id="${package.id}"><i class="fa-solid fa-eye"></i> Detail</span>
+							<a th:href="'/package/createOrder?packageId='+${package.id}" class="btnEdit"><i class="fa-solid fa-pen"></i> Edit</a>
+							<span class="btnDelete" th:id="${package.id}"><i class="fa-regular fa-trash-can"></i> Delete</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<ul id="paging" th:if="${total > 0}">
+				<a class="page" href="/packages?page=1"><li>Đầu</li></a>
+				<span th:each="i : ${#numbers.sequence(1, totalPage)}">
+					<span th:if="${i <= 5 && pageNumber <= 2}">
+						<span th:if="${i==pageNumber}">
+							<a class="page" th:href="'/packages?page='+${i}"><li style="background-color: lightcoral;" th:text="${i}"></li></a>
+						</span>
+						<span th:if="${i!=pageNumber}">
+							<a class="page" th:href="'/packages?page='+${i}"><li th:text="${i}"></li></a>
+						</span>
+					</span>
+					
+					<span th:if="${pageNumber > 2}">
+						<span th:if="${i >= pageNumber-2 && i <= pageNumber+2}">
+							<span th:if="${i==pageNumber}">
+								<a class="page" th:href="'/packages?page='+${i}"><li style="background-color: lightcoral;" th:text="${i}"></li></a>
+							</span>
+							<span th:if="${i!=pageNumber}">
+								<a class="page" th:href="'/packages?page='+${i}"><li th:text="${i}"></li></a>
+							</span>
+						</span>
+					</span>
+				</span>
+				<a class="page" th:href="'/packages?page='+${totalPage}"><li>Cuối</li></a>
+			</ul>
+		</div>
+	</div>
+</body>
+<script src="/js/admin/packages.js"></script>
+</html>

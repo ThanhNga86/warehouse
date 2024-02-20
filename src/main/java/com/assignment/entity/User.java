@@ -3,6 +3,7 @@ package com.assignment.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,6 +24,7 @@ public class User implements Serializable{
 	@Id
 	private String username;
 	private String password;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String fullname;
 	private boolean active;
 	private String email;

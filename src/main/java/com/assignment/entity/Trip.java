@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,10 +28,13 @@ public class Trip implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String type;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String status;
 	private Date timeStart = new Date();
 	private Date timeEnd;
+	@Column(columnDefinition = "nvarchar(500)")
 	private String travelDistain;
 	@ManyToOne
 	@JoinColumn(name = "userId")

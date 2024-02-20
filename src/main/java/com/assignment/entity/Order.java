@@ -3,6 +3,7 @@ package com.assignment.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +26,13 @@ public class Order implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String fullname;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String phone;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String destinationPoint;
-	private String departermentPoint;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String status;
 	private Date createDate = new Date();
 	@ManyToOne

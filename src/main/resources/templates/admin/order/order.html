@@ -11,32 +11,51 @@
 	
 	<div id="containerOrder">
 		<div class="order">
-			<form action="/package/createOrder" class="formCreateOrder" method="post">
+			<form class="formCreateOrder" enctype="multipart/form-data">
+				<input type="hidden" class="packageId" th:id="${packageId.id}" th:if="${packageId!=null}">
+				<h4>Người gửi</h4>
+				<div class="form-group">
+					<label>Số điện thoại</label>
+					<input type="number" class="form-control phoneSender" th:if="${packageId==null}">
+					<input type="number" class="form-control phoneSender" th:if="${packageId!=null}" th:value="${packageId.order.userCustomer.phone}">
+					<div class="message msPhoneSender"></div>
+				</div>
+				<div class="form-group">
+					<label>Tên người gửi</label>
+					<input type="text" class="form-control fullnameSender" th:if="${packageId==null}">
+					<input type="text" class="form-control fullnameSender" th:if="${packageId!=null}" th:value="${packageId.order.userCustomer.fullname}">
+					<div class="message msFullnameSender"></div>
+				</div>
+				<br>
+				
 				<h4>Người nhận</h4>
 				<div class="form-group">
-					<label>Số điện thoại khách hàng</label>
-					<input type="number" name="phone" class="form-control">
-					<div class="message msPhone"></div>
+					<label>Số điện thoại</label>
+					<input type="number" class="form-control phoneReceiver" th:if="${packageId==null}">
+					<input type="number" class="form-control phoneReceiver" th:if="${packageId!=null}" th:value="${packageId.order.phone}">
+					<div class="message msPhoneReceiver"></div>
 				</div>
 				<div class="form-group">
-					<label>Tên khách hàng</label>
-					<input type="text" name="fullname" class="form-control">
-					<div class="message msFullname"></div>
+					<label>Tên người nhận</label>
+					<input type="text" class="form-control fullnameReceiver"  th:if="${packageId==null}">
+					<input type="text" class="form-control fullnameReceiver"  th:if="${packageId!=null}" th:value="${packageId.order.fullname}">
+					<div class="message msFullnameReceiver"></div>
 				</div>
 				<div class="form-group">
-					<label>Địa chỉ chi tiết</label>
-					<input type="text" name="destinationPoint" class="form-control">
-					<div class="message msDestinationPoint"></div>
+					<label>Địa chỉ người nhận</label>
+					<input type="text" class="form-control addressReceiver" th:if="${packageId==null}">
+					<input type="text" class="form-control addressReceiver" th:if="${packageId!=null}" th:value="${packageId.order.destinationPoint}">
+					<div class="message msAddressReceiver"></div>
 				</div>
 				<br>
 				
 				<h4>Sản phẩm</h4>
 				<div class="form-product">
-					<div class="form-addProduct mb-2">
+					<div class="form-addProduct mb-2"  th:if="${packageId==null}">
 						<div class="uploadImage">
-							<input type="file" name="fileImage" class="fileImage">
+							<input type="file" name="fileImage" class="fileImage" multiple>
 							<label class="lbFileImage">
-								<i class="fa-solid fa-camera"></i>
+								<i class="fa-solid fa-camera"></i> 
 								<img class="showImage">
 							</label>
 							<div class="message msProduct"></div>
@@ -44,15 +63,15 @@
 						
 						<div class="form-right">
 							<div class="form-group mx-2">
-								<input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
+								<input type="text" class="form-control nameP" placeholder="Nhập tên sản phẩm">
 								<div class="message msNameProduct"></div>
 							</div>
 							<div class="form-group mx-2">
-								<input type="number" name="name" class="form-control" placeholder="Nhập khối lượng">
+								<input type="number" class="form-control massP" placeholder="Nhập khối lượng">
 								<div class="message msMass"></div>
 							</div>
 							<div class="form-group mx-2">
-								<input type="number" name="name" class="form-control" placeholder="Nhập số lượng">
+								<input type="number" class="form-control quantityP" placeholder="Nhập số lượng">
 								<div class="message msQuantity"></div>
 							</div>
 						</div>
@@ -60,6 +79,62 @@
 						<div class="create-form"><i class="fa-solid fa-plus"></i></div>
 						<div class="delete-form"><i class="fa-solid fa-xmark"></i></div>
 					</div>
+					
+					<div th:if="${packageId!=null}">
+						<div class="form-addProduct mb-2" th:each="product : ${packageId.listProducts}">
+							<div class="uploadImage">
+								<input type="file" name="fileImage" class="fileImage" multiple>
+								<label class="lbFileImage">
+									<i class="fa-solid fa-camera"></i>
+									<img class="showImage" th:imageName="${product.image}" th:src="'/images/'+${product.image}">
+								</label>
+								<div class="message msProduct"></div>
+							</div>
+							
+							<div class="form-right">
+								<div class="form-group mx-2">
+									<input type="text" class="form-control nameP" placeholder="Nhập tên sản phẩm" th:value="${product.name}">
+									<div class="message msNameProduct"></div>
+								</div>
+								<div class="form-group mx-2">
+									<input type="number" class="form-control massP" placeholder="Nhập khối lượng" th:value="${product.mass}">
+									<div class="message msMass"></div>
+								</div>
+								<div class="form-group mx-2">
+									<input type="number" class="form-control quantityP" placeholder="Nhập số lượng" th:value="${product.quantity}">
+									<div class="message msQuantity"></div>
+								</div>
+							</div>
+							
+							<div class="create-form"><i class="fa-solid fa-plus"></i></div>
+							<div class="delete-form"><i class="fa-solid fa-xmark"></i></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label>Ghi chú</label>
+					<textarea type="text" class="form-control notes"  th:if="${packageId==null}"></textarea>
+					<textarea type="text" class="form-control notes"  th:if="${packageId!=null}" th:text="${packageId.notes}"></textarea>
+				</div>
+				<br>
+				
+				<div class="form-group">
+					<h4>Kho hàng</h4>
+					<select class="form-select warehouse"  th:if="${packageId==null}">
+						<option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
+					</select>
+					<select class="form-select warehouse"  th:if="${packageId!=null}">
+						<option th:each="warehouse : ${warehouses}" th:if="${warehouse.id==packageId.wareHouse.id}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
+						<option th:each="warehouse : ${warehouses}" th:if="${warehouse.id!=packageId.wareHouse.id}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label class="btnCreate">TẠO ĐƠN</label>
+					<label class="btnUpdate">CẬP NHẬT</label>
+					<label class="btnReset">LÀM MỚI</label>
+					<br><br>
 				</div>
 			</form>
 		</div>
