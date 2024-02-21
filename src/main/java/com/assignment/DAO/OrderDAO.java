@@ -10,4 +10,5 @@ import com.assignment.entity.User;
 public interface OrderDAO extends JpaRepository<Order, Long> {
 	
 	List<Order> findByUserCustomer(User user);
+	
 }
