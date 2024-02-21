@@ -25,13 +25,22 @@ public class warehouseController {
 	@Autowired
 	SessionService session;
 	
-	@GetMapping("/warehouse/addWareHouse")
-	public String addPackage(Model model) {
+	@RequestMapping("/addWareHouse")
+	public String addwarehouse() {
+//		WareHouse WHitem = new WareHouse();
+//		model.addAttribute("WHitem", WHitem);
+//		List<WareHouse> WHitems = Warehousedao.findAll();
+//		model.addAttribute("WHitems", WHitems);
+		return "admin/warehouse/warehouse";
+	}
+	
+	@GetMapping("/warehouses")
+	public String addList_warehouse(Model model) {
 		WareHouse WHitem = new WareHouse();
 		model.addAttribute("WHitem", WHitem);
 		List<WareHouse> WHitems = Warehousedao.findAll();
 		model.addAttribute("WHitems", WHitems);
-		return "admin/warehouse/warehouse";
+		return "admin/warehouse/menu_list_warehouse";
 	}
 	
 	@GetMapping("/warehouse/page")
@@ -56,30 +65,30 @@ public class warehouseController {
 //	}
 	//
 	@GetMapping("/warehouse/edit/{id}")
-	public String edit(Model model, @PathVariable("id") Long id) {
+	public String edit(Model model, @PathVariable(name ="id") Long id) {
 		
 		WareHouse WHitem = Warehousedao.findById(id).get();
-		//String idWhiem = String.valueOf(WHitem.getId());
+		String idWhiem = String.valueOf(WHitem.getId());
 		model.addAttribute("WHitem", WHitem);
 		List<WareHouse> WHitems = Warehousedao.findAll();
 		model.addAttribute("WHitems", WHitems);
-	return "admin/layout/warehouse";
+	return "admin/warehouse/warehouse";
 	}
 	//
 	//
 	
-//	@RequestMapping("/search-key")
-//	public String searchAndPage(Model model, 
-//	@RequestParam("keywords") Optional<String> kw,
-//	@RequestParam("p") Optional<Integer> p) {
-//		
-//		String kwords = kw.orElse(session.get("keywords"));
-//		session.set("keywords", kwords);
-//		Pageable pageable = PageRequest.of(p.orElse(0), 2);
-//		Page<WareHouse> page = Warehousedao.findAllByNameLike("%"+kwords+"%", pageable);
-//		model.addAttribute("page", page);
-//		return "search-key";
-//		}
+	@RequestMapping("/search-key")
+	public String searchAndPage(Model model, 
+	@RequestParam("keywords") Optional<String> kw,
+	@RequestParam("p") Optional<Integer> p) {
+		
+		String kwords = kw.orElse(session.get("keywords"));
+		session.set("keywords", kwords);
+		Pageable pageable = PageRequest.of(p.orElse(0), 2);
+		Page<WareHouse> page = Warehousedao.findAllByNameLike("%"+kwords+"%", pageable);
+		model.addAttribute("page", page);
+		return "search-key";
+		}
 //	//
 //	//
 //	@RequestMapping("/warehouse/create")

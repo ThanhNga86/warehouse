@@ -9,7 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,11 +20,19 @@ import com.assignment.entity.Traffic;
 import com.assignment.entity.Trip;
 import com.assignment.entity.WareHouse;
 import com.assignment.repo.TrafficRepository;
+import com.assignment.repo.TripRepository;
+import com.assignment.repo.WareHouseRepository;
 
 @Controller
 public class TrafficController {
 	@Autowired
 	TrafficRepository TFdao;
+	
+	@Autowired
+	WareHouseRepository WHdao;
+	
+	@Autowired
+	TripRepository Tdao;
 
 	//
 	@RequestMapping("/traffic/page")
@@ -43,8 +53,14 @@ public class TrafficController {
 		model.addAttribute("TFitems", TFitems);
 		// Biến item: buộc lên form
 		// Biến items: hiển thị lên bảng
-		return "/admin/traffic/menu_traffic";
+		return "admin/traffic/menu_traffic";
 	}
+	
+//	// show trip
+//	@ModelAttribute(name= "trips")
+//	public List<Trip> getTrips(){
+//		return Tdao.findAll();
+//	}
 
 	//
 	@RequestMapping("/traffic/edit/{id}")
@@ -73,29 +89,31 @@ public class TrafficController {
 //		return "search-key";
 //		}
 //	//
-//	//
-//	@RequestMapping("/warehouse/create")
-//	public String create(Model model, WareHouse item ,BindingResult result) 
-//			{
-//		if(result.hasErrors()) {
-//			model.addAttribute("message", "một số testfield chưa dc xử lí!!");
-//		}else {
-//			Warehousedao.save(item);
-//			
-//		}
-//		
-//	return "redirect:/admin/layout/List_warehouse";
-//	}
-//	//
-//	@RequestMapping("/traffic/update")
-//	public String update(Traffic item) {
-//		TFdao.save(item);
-//	retredirect:/urn "traffic/edit/" + item.getId();
-//	}
-//	//
-//	@RequestMappiwarehouseaffic/delete/{id}")
-//	public String create(@PathVariable("id") Long id) { 
-//		WarehousedaoTFdao.deleteById(id);
-//	retredirect:/urn "admin/layout/List_warehouse";
-//	}
+	//
+		@RequestMapping("/traffic/create")
+		public String create(Model model,@ModelAttribute("TFitem") Traffic TFitem ,BindingResult result) 
+				{
+			if(result.hasErrors()) {
+				model.addAttribute("message", "một số testfield chưa dc xử lí!!");
+			}else {
+				TFdao.save(TFitem);
+				model.addAttribute("message", "create thành công");
+			}
+			
+		return "redirect:/";
+		}
+	//
+	@RequestMapping("/traffic/update")
+	public String update(Traffic TFitem) {
+		TFdao.save(TFitem);
+	return "traffic/edit/" + TFitem.getId();
+	}
+	//
+	@RequestMapping ("/traffic/delete/{id}")
+	public String delete(@PathVariable(name = "id") Long id) { 
+		TFdao.deleteById(id);
+	return "admin/traffic/menu_traffic";
+	}
+	
+	
 }

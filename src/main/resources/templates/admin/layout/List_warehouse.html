@@ -30,7 +30,7 @@
 			<td><span th:text="${item.name}"></span></td>
 			<td><span th:text="${item.phone}"></span></td>
 			<td><span th:text="${item.name}"></span></td>
-			<td><a href="/warehouse/edit/${WHitem.id}">Edit</a></td>
+			<td><a th:href="'/warehouse/edit/'+${item.id}">Edit</a></td>
 		</tr>
 	</c:forEach>
 	</table>
@@ -42,12 +42,6 @@
 	
 	
 	
-	<ul>
-		<li>Số thực thể hiện tại: ${page.numberOfElements}</li>
-		<li>Trang số: ${page.number}</li>
-		<li>Kích thước trang: ${page.size}</li>
-		<li>Tổng số thực thể: ${page.totalElements}</li>
-		<li>Tổng số trang: ${page.totalPages}</li>
-	</ul>
+
 </body>
 </html>

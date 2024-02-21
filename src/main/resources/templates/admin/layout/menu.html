@@ -41,8 +41,8 @@
 					<span class="right"><i class="fa-solid fa-angle-right"></i>
 				</li>
 				<ul class="collapse show-menuMini" sec:authorize="hasAnyRole('ADMIN')" id="menu-product">
-			    	<a href="/warehouse/addWareHouse"><li><span class="icon"><i class="fa-solid fa-plus"></i></span>Thêm kho</li></a>
-			    	<a href="/warehouses"><li><span class="icon"><i class="fa-solid fa-list"></i></span>Danh sách</li></a>
+			    	<a th:href="'/addWareHouse'"><li><span class="icon"><i class="fa-solid fa-plus"></i></span>Thêm kho</li></a>
+			    	<a th:href="'/warehouses'"><li><span class="icon"><i class="fa-solid fa-list"></i></span>Danh sách</li></a>
 				</ul>
 				
 				<a href="/traffic" sec:authorize="hasAnyRole('ADMIN', 'STAFF')"><li><span class="icon"><i class="fa-solid fa-truck"></i></span>Phương tiện</li></a>
