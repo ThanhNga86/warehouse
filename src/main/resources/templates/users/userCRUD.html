@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/images/icon-logo.png">
+<link rel="stylesheet" href="/css/admin/packages.css">
+<title>Đơn hàng - quản lý kho hàng</title>
+</head>
+<body>
+	<div th:insert="~{/admin/layout/menu}"></div>
+	
+	<div id="containerPackages">
+		<div class="packages">
+			<form action="/packages" method="get" class="fromSearch">
+				<input type="search" name="search" class="searchP form-control w-75" placeholder="Tìm kiếm theo mã số" th:value="${vlSearch}">
+				<button>Search</button>
+			</form>
+			
+			<div class="tableP table-responsive">
+				<table class="table table-bordered mt-2 text-center">
+					<tr>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Fullname</th>
+						<th>Phone</th>
+						<th>Role</th>
+					</tr>
+					
+					<tr th:each="user : ${users}">
+						<td th:text="${user.username}"></td>
+						<td th:text="${user.email}"></td>
+						<td th:text="${user.fullname}"></td>
+						<td th:text="${user.role}"></td>
+						<td>
+							<a th:href="'/user/useredit?userId='+${user.username}" class="btnEdit"><i class="fa-solid fa-pen"></i> Edit</a>
+							<a th:href="'/user/userdelete?userId='+${user.username}" class="btnDelete"><i class="fa-regular fa-trash-can"></i> Delete</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<ul id="paging" th:if="${total > 0}">
+				<a class="page" href="/packages?page=1"><li>Đầu</li></a>
+				<span th:each="i : ${#numbers.sequence(1, totalPage)}">
+					<span th:if="${i <= 5 && pageNumber <= 2}">
+						<span th:if="${i==pageNumber}">
+							<a class="page" th:href="'/packages?page='+${i}"><li style="background-color: lightcoral;" th:text="${i}"></li></a>
+						</span>
+						<span th:if="${i!=pageNumber}">
+							<a class="page" th:href="'/packages?page='+${i}"><li th:text="${i}"></li></a>
+						</span>
+					</span>
+					
+					<span th:if="${pageNumber > 2}">
+						<span th:if="${i >= pageNumber-2 && i <= pageNumber+2}">
+							<span th:if="${i==pageNumber}">
+								<a class="page" th:href="'/packages?page='+${i}"><li style="background-color: lightcoral;" th:text="${i}"></li></a>
+							</span>
+							<span th:if="${i!=pageNumber}">
+								<a class="page" th:href="'/packages?page='+${i}"><li th:text="${i}"></li></a>
+							</span>
+						</span>
+					</span>
+				</span>
+				<a class="page" th:href="'/packages?page='+${totalPage}"><li>Cuối</li></a>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
