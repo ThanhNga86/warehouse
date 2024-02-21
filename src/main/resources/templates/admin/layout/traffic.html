@@ -7,6 +7,7 @@
 <title>Dashboard</title>
 </head>
 <body>
+	<!--th:action="${TFitem}" th:object="${TFitems} "-->
 	<form method="post">
 		<div class="form-floating mb-3">
 		  <input type="text" class="form-control" id="id" placeholder="id" th:value="${TFitem.id}">
@@ -39,11 +40,12 @@
 	  <label for="type">type</label>
 	</div>
 	
-	<div class="form-floating">
-	  <input th:if="${TFitem.trip != null}" type="text" class="form-control" id="trip_id" placeholder="trip_id" th:value="${TFitem.trip.id}">
-	  <input th:if="${TFitem.trip == null}" type="text" class="form-control" id="trip_id" placeholder="trip_id">
-	  <label for="trip_id">trip_id</label>
-	</div>
+	<!--<div class="form-floating">
+		<label>trip id</label>
+	  <select th:field="*{trips}">
+		  <option th:each="trip: ${trips} " th:value="${trip.id}" ></option>
+	  </select>
+	</div>-->
 	
 	<div class="form-floating mb-3">
 	  <input th:if="${TFitem.wareHouse != null}" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">
@@ -52,16 +54,16 @@
 	</div>
 	
 	<div style="text-align: center;">
-		<button class="btn btn-secondary" >Thêm</button>
-		<button class="btn btn-secondary">xóa</button>
-		<button class="btn btn-secondary" formaction="/traffic/update">Sửa</button>
+		<a class="btn btn-secondary" th:href="@{/traffic/create}">thêm</a>
+		<button type="submit" class="btn btn-secondary" formaction="/traffic/delete/{id}(id=${TFitem.id})">xóa</button>
+		<button type="submit" class="btn btn-secondary" formaction="/traffic/update">Sửa</button>
 	</div>
 	</form>
 	<form>
 		<input type="text" id="name">
 		<button type="button" for="name">tìm kiếm</button>
 	</form>
-	<table  border="1" style="width:100% ; font-size: large; text : center;">
+	<table class="table table-bordered">
 		<tr>
 			<td>id</td>
 			<td>capacity</td>

@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Login - quản lý kho hàng</title>
+
+<title>Quên pass form</title>
 <link rel="stylesheet" href="/lib/bootstrap-5.3.1-dist/css/bootstrap.css">
 <link rel="icon" href="/images/icon-logo.png">
 <link rel="stylesheet" href="/css/account/login.css">
@@ -21,23 +22,14 @@
 	
 	            <form th:action="@{/authenticateTheUser}" method="post" class="mb-md-5 mt-md-4 pb-4">
 	
-	              <h2 class="fw-bold mb-2 text-uppercase mb-5">ĐỔI MẬT KHẨU</h2>
+	              <h2 class="fw-bold mb-2 text-uppercase mb-5">Quên Mật Khẩu</h2>
 	
 	              <div class="form-outline form-white mb-4">
 	                <label class="form-label" for="typeUsername">Tên đăng nhập</label>
 	                <input type="text" id="typeUsername" name="username" class="form-control form-control-lg" />
 	              </div>
 	
-	              <div class="form-outline form-white mb-4">
-	                <label class="form-label" for="typePassword">Mật mới</label>
-	                <input type="password" id="typePassword" name="password" class="form-control form-control-lg" />
-	              </div>
-	              
-	              <div class="form-outline form-white mb-4">
-	                <label class="form-label" for="typePassword1">Xác nhận Mật khẩu mới</label>
-	                <input type="password" id="typePassword1" name="password1" class="form-control form-control-lg" />
-	              </div>
-	              
+	             
 	              <div class="form-outline form-white mb-4">
 	                <label class="form-label" for="typeEmail">email</label>
 	                <input type="Email" id="typeEmail" name="Email" class="form-control form-control-lg" />
