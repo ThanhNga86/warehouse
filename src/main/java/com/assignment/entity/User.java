@@ -3,10 +3,12 @@ package com.assignment.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -31,12 +33,12 @@ public class User implements Serializable{
 	private String phone;
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<WareHouse> listWareHouses;
-	@OneToMany(mappedBy = "userCustomer")
+	@OneToMany(mappedBy = "userCustomer",cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<Order> listOrder1;
-	@OneToMany(mappedBy = "userConfirm")
+	@OneToMany(mappedBy = "userConfirm", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<Order> listOrder2;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<Trip> listTrips;
 }

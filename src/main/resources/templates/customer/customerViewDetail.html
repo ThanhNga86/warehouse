@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Customer View Detail</title>
@@ -21,7 +21,6 @@
 					</thead>
 					<tbody>
 						<tr th:each="product : ${package.listProducts}">
-							<th scope="row" th:text="${product.id}"></th>
 							<th th:text="${product.name}"></th>
 							<th th:text="${product.quantity}"></th>
 							<th th:text="${product.unit}"></th>
