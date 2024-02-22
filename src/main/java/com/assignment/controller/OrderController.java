@@ -112,7 +112,7 @@ public class OrderController {
 			@RequestParam("search") Optional<Long> search) {
 		int sizePage = 10;
 		if (search.isPresent()) {
-			model.addAttribute("packages", daoPackage.findByPackageId(search.get()));
+			model.addAttribute("packages", daoPackage.findById(search.get()));
 		} else {
 			Pageable page = PageRequest.of(pageNumber.orElse(1) - 1, sizePage, Sort.by("id").reverse());
 			Page<Package> packages = daoPackage.findAll(page);

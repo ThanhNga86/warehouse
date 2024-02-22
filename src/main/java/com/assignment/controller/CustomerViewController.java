@@ -23,9 +23,6 @@ public class CustomerViewController {
 	@GetMapping("/customer/view")
 	public String CustomerViewOrder(Model model) {
 //		List<Order> list = userdao.findByUsername("admin").getListOrder1();
-		for (Order o : orderdao.findAll()) {
-			System.out.println(o.getId());
-		}
 		model.addAttribute("listOrder",orderdao.findAll());
 		return "customer/customerView";
 	}
