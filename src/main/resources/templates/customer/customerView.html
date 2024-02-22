@@ -24,7 +24,6 @@
 				<th scope="col" >Destination Point</th>
 				<th scope="col" >User Confirm</th>
 				<th scope="col" >Phone</th>
-				<th scope="col" >Status</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,8 +33,6 @@
 				<th  th:text="${order.destinationPoint}"></th>
 				<th  th:text="${order.phone}"></th>
 				<th  th:text="${order.status}"></th>
-				<th><a th:href="'/customer/'+ ${order.trip.id}+'/'+${order.id}">Detail</a></th>
-				
 			</tr>
 		</tbody>
 		</table>
