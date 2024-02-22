@@ -22,15 +22,18 @@ public class CustomerViewController {
 	PackageDAO packagedao;
 	@GetMapping("/customer/view")
 	public String CustomerViewOrder(Model model) {
-		List<Order> list = userdao.findByUsername("admin").getListOrder1();
-		model.addAttribute("listOrder",list);
+//		List<Order> list = userdao.findByUsername("admin").getListOrder1();
+		for (Order o : orderdao.findAll()) {
+			System.out.println(o.getId());
+		}
+		model.addAttribute("listOrder",orderdao.findAll());
 		return "customer/customerView";
 	}
 	
 	@GetMapping("/customer/{x}/{y}")
 	public String CustomerViewOrderDetail(Model model,@PathVariable("x") long tripid,
 			@PathVariable("y") long oderid) {
-		model.addAttribute("listPackage", packagedao.findByPackageId(oderid));
+		model.addAttribute("listPackage", packagedao.findById(oderid));
 		return "customer/customerViewDetail";
 	}
 	
