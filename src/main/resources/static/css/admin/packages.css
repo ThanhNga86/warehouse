@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+@media (min-width: 992px) {
+	#containerPackages .packages {
+		margin: 60px 0 0 240px;
+	}
+
+	#paging .page>li {
+		display: block;
+		padding: 5px 12px;
+		background-color: deepskyblue;
+	}
+}
+
+@media (max-width: 992px) {
+	#containerPackages .packages {
+		margin: 60px 0 0 0;
+	}
+
+	#paging .page>li {
+		display: block;
+		padding: 5px 12px;
+		background-color: deepskyblue;
+	}
+}
+
+@media (max-width: 576px) {
+	#paging .page>li {
+		display: block;
+		font-size: 12px;
+		padding: 5px 12px;
+		background-color: deepskyblue;
+	}
+}
+
+#containerPackages .packages {
+	background-color: white;
+	padding: 10px;
+}
+
+#containerPackages .packages label {
+	font-size: large;
+	margin-bottom: 1px;
+}
+
+#containerPackages .packages .form-control:focus {
+	box-shadow: 0 0 0 2px rgba(13, 110, 253, .25);
+}
+
+#containerPackages .packages .message {
+	font-size: large;
+	color: red;
+}
+
+.btnAccept {
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+	color: white;
+	padding: 2px 6px;
+	border-radius: 8px;
+	background-color: limegreen;
+}
+
+.btnCancel {
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+	color: white;
+	padding: 2px 6px;
+	border-radius: 8px;
+	background-color: darkgray;
+}
+
+.btnRestore {
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+	color: white;
+	padding: 2px 6px;
+	border-radius: 8px;
+	background-color: lightsalmon;
+}
+
+.btnDetail {
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+	color: white;
+	padding: 2px 6px;
+	border-radius: 8px;
+	background-color: lightseagreen;
+}
+
+.btnDetail {
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+	color: white;
+	padding: 2px 6px;
+	border-radius: 8px;
+	background-color: lightseagreen;
+}
+
+.btnEdit {
+	font-size: 14px;
+	color: white;
+	padding: 2px 6px;
+	border-radius: 8px;
+	background-color: deepskyblue;
+	text-decoration: none;
+}
+
+.btnDelete {
+	font-size: 14px;
+	color: white;
+	padding: 2px 6px;
+	border-radius: 8px;
+	background-color: lightcoral;
+	cursor: pointer;
+	user-select: none;
+}
+
+.btnReturn {
+	font-size: 14px;
+	color: white;
+	padding: 2px 6px;
+	border-radius: 8px;
+	background-color: rgba(0,0,0,0.6);
+	cursor: pointer;
+	user-select: none;
+	display: none;
+}
+
+.fromSearch {
+	display: flex;
+	align-items: center;
+}
+
+.fromSearch>button {
+	padding: 5px 20px;
+	border-radius: 10px;
+	background-color: deepskyblue;
+	color: white;
+	font-size: large;
+	border: none;
+	margin-left: 5px;
+}
+
+.infoUserPackage {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.formLeft {
+	text-align: left;
+}
+
+.formRight {
+	text-align: left;
+}
+
+.productPackage {
+	display: flex;
+	justify-content: center;
+}
+
+.productP{
+	display: flex;
+	align-items: center;
+}
+
+#paging {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+}
+
+#paging .page {
+	text-decoration: none;
+	color: white;
+}
+
+#paging .page:hover {
+	opacity: 0.8;
+}

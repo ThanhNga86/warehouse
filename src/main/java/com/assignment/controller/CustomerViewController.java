@@ -1,5 +1,7 @@
 package com.assignment.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,35 +11,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.assignment.DAO.OrderDAO;
 import com.assignment.DAO.PackageDAO;
 import com.assignment.DAO.UserDAO;
-
-import jakarta.servlet.http.HttpSession;
+import com.assignment.entity.Order;
 
 @Controller
 public class CustomerViewController {
 	@Autowired
-	HttpSession session;
-	@Autowired
 	UserDAO userdao;
 	@Autowired
 	OrderDAO orderdao;
-	@Autowired
 	PackageDAO packagedao;
-	
 	@GetMapping("/customer/view")
-	public String customerView(Model model) {
-		model.addAttribute("listOrder", orderdao.findByUserCustomer
-				(userdao.findByUsername((String) session.getAttribute("username"))));
-		return "/customer/customerView";
+	public String CustomerViewOrder(Model model) {
+//		List<Order> list = userdao.findByUsername("admin").getListOrder1();
+		model.addAttribute("listOrder",orderdao.findAll());
+		return "customer/customerView";
 	}
 	
 	@GetMapping("/customer/{x}/{y}")
-	public String customerViewDetail(Model model, @PathVariable("x")long tripId,
-			@PathVariable("y")long orderId) {
-		model.addAttribute("listPackage", packagedao.findByOrderId(orderId));
-		
-		return "/customer/customerViewDetail";
+	public String CustomerViewOrderDetail(Model model,@PathVariable("x") long tripid,
+			@PathVariable("y") long oderid) {
+		model.addAttribute("listPackage", packagedao.findById(oderid));
+		return "customer/customerViewDetail";
 	}
-		
-		
 	
 }

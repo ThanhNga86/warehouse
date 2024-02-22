@@ -3,8 +3,10 @@ package com.assignment.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,14 +29,14 @@ public class Package implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(columnDefinition = "TEXT")
+	@Column(columnDefinition = "nvarchar(4000)")
 	private String notes;
 	@ManyToOne
 	@JoinColumn(name = "warehouseId")
 	private WareHouse wareHouse;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "orderId")
 	private Order order;
-	@OneToMany(mappedBy = "packageId")
+	@OneToMany(mappedBy = "packageId", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<Product> listProducts;
 }

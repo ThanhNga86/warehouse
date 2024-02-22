@@ -3,7 +3,11 @@ package com.assignment.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+<<<<<<< HEAD
 import jakarta.persistence.CascadeType;
+=======
+import jakarta.persistence.Column;
+>>>>>>> 67fcfaa427c88e103d7a1789a56429f8ee3fb991
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,9 +30,13 @@ public class Traffic implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String name;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String capacity;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String status;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String type;
 	private Date dateBuy;
 	@OneToOne(cascade = CascadeType.REMOVE)

@@ -40,7 +40,7 @@
 					<span class="right"><i class="fa-solid fa-angle-right"></i>
 				</li>
 				<ul class="collapse show-menuMini" sec:authorize="hasAnyRole('ADMIN')" id="menu-product">
-			    	<a th:href="'/addWareHouse'"><li><span class="icon"><i class="fa-solid fa-plus"></i></span>Thêm kho</li></a>
+			    	<a th:href="'/warehouse/edit'"><li><span class="icon"><i class="fa-solid fa-plus"></i></span>Thêm kho</li></a>
 			    	<a th:href="'/warehouses'"><li><span class="icon"><i class="fa-solid fa-list"></i></span>Danh sách</li></a>
 				</ul>
 				
@@ -86,7 +86,7 @@
 			    </div>
 			    
 				<div class="instruction">
-					<a href="/admin">Quản trị viên</a>
+					<a href="/dashboard">Quản trị viên</a>
 					<span th:if="${instruction!=null}" th:id="${instruction}"></span>
 				</div>
 			</div>

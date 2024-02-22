@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html xmlns="https://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <title>Customer View</title>
+<style>
+	.customerView{
+		margin-left: 240px;
+		margin-top: 20px;
+	}
+</style>
 </head>
 <body>
+	<div th:insert="~{/admin/layout/menu}"></div>
+	<div class="container">
+	<div class="customerView">
 	<table class="table">
+		<br><br>
 		<thead >
 			<tr >
 				<th scope="col" >Order ID</th>
 				<th scope="col" >Create Date</th>
-				<th scope="col" >Departerment Point</th>
 				<th scope="col" >Destination Point</th>
-				<th scope="col" >Quantity</th>
 				<th scope="col" >User Confirm</th>
-				<th scope="col" >Quantity</th>
-				<th scope="col" >Trip ID</th>
+				<th scope="col" >Phone</th>
 				<th scope="col" >Status</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="order : ${listOrder}">
+			<tr th:each="order : ${listOrder}"  th:if="${order.trip!=null}">
 				<th  th:text="${order.id}"></th>
 				<th  th:text="${order.createDate}"></th>
-				<th  th:text="${order.departermentPoint"></th>
 				<th  th:text="${order.destinationPoint}"></th>
-				<th  th:text="${order.quantity}"></th>
-				<th  th:text="${order.userConfirm.id}"></th>
-				<th  th:text="${order.quantity}"></th>
-				<th  th:text="${order.trip.id}"></th>
-				<th><a th:href="@{'/customer/'+ ${order.trip.id}+'/'+${order.id}">Detail</a></th>
+				<th  th:text="${order.phone}"></th>
+				<th  th:text="${order.status}"></th>
+				<th><a th:href="'/customer/'+ ${order.trip.id}+'/'+${order.id}">Detail</a></th>
+				
 			</tr>
 		</tbody>
 		</table>
+		</div>
+	</div>
 </body>
 </html>

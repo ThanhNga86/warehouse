@@ -2,6 +2,7 @@ package com.assignment.entity;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,9 +24,11 @@ public class Product implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String name;
 	private Double mass;
 	private Integer quantity;
+	@Column(columnDefinition = "nvarchar(255)")
 	private String image;
 	@ManyToOne
 	@JoinColumn(name = "packageId")
