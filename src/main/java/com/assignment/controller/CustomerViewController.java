@@ -19,6 +19,7 @@ public class CustomerViewController {
 	UserDAO userdao;
 	@Autowired
 	OrderDAO orderdao;
+	@Autowired
 	PackageDAO packagedao;
 	@GetMapping("/customer/view")
 	public String CustomerViewOrder(Model model) {
