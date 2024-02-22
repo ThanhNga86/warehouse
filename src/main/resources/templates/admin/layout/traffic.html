@@ -46,6 +46,11 @@
 		  <option th:each="trip: ${trips} " th:value="${trip.id}" ></option>
 	  </select>
 	</div>-->
+	<div class="form-floating mb-3">
+	  <input th:if="${TFitem.trip != null}" type="text" class="form-control" id="trip_id" placeholder="trip_id" th:value="${TFitem.trip.id}">
+	  <input th:if="${TFitem.trip == null}" type="text" class="form-control" id="trip_id" placeholder="trip_id">
+	  <label for="trip_id">trip_id</label>
+	</div>
 	
 	<div class="form-floating mb-3">
 	  <input th:if="${TFitem.wareHouse != null}" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">

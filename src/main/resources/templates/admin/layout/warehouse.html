@@ -8,34 +8,38 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<form >
+	<form method="get">
 	<h2>Trang Quản Lí kho</h2>
 	<div class="mb-3">
+	  <label for="formGroupExampleInput" class="form-control">id warehouse</label>
+	  <input type="text" class="form-control" name="id" placeholder="nhập id" th:value="${WHitem.id}">
+	</div>
+	<div class="mb-3">
 	  <label for="formGroupExampleInput" class="form-control">Address</label>
-	  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="nhập address" th:value="${WHitem.address}">
+	  <input type="text" class="form-control" name="address" placeholder="nhập address" th:value="${WHitem.address}">
 	</div>
 	<div class="mb-3">
 	  <label for="formGroupExampleInput2" class="form-capacity">capacity</label>
-	  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="nhập capacity" th:value="${WHitem.capacity}">
+	  <input type="text" class="form-control" name="capacity"  id="formGroupExampleInput2" placeholder="nhập capacity" th:value="${WHitem.capacity}">
 	</div>
 	<div class="mb-3">
 	  <label for="formGroupExampleInput3" class="form-control">Name</label>
-	  <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="nhập name kho" th:value="${WHitem.name}">
+	  <input type="text" class="form-control"  name="name" placeholder="nhập name kho" th:value="${WHitem.name}">
 	</div>
 	<div class="mb-3">
 	  <label for="formGroupExampleInput4" class="form-capacity">Phone</label>
-	  <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="nhập số điện thoại" th:value="${WHitem.phone}">
+	  <input type="text" class="form-control" name="phone" placeholder="nhập số điện thoại" th:value="${WHitem.phone}">
 	</div>
 	<div class="mb-3">
 	  <label for="formGroupExampleInput5" class="form-control">User_ID</label>
-	  <input type="text" class="form-control" id="formGroupExampleInput5" placeholder="chọn user_id" th:value="${WHitem.User.username}">
+	  <input type="text" class="form-control" name="user" placeholder="chọn user_id" th:value="${WHitem.User.username}">
 	</div>
 	<h1 th:text="${message}"></h1>
 	<hr>
 	<div style="text-align: center;">
 		<button type="submit" class="btn btn-secondary" formaction="/warehouse/create">Thêm</button>
-		<button type="submit" class="btn btn-secondary">xóa</button>
-		<button type="submit" class="btn btn-secondary">Sửa</button>
+		<button type="submit" class="btn btn-secondary" formaction="">xóa</button>
+		<button type="submit" class="btn btn-secondary" formaction="/warehouse/update">Sửa</button>
 	</div>
 	</form>
 	

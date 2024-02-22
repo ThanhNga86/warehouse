@@ -5,19 +5,387 @@
 <link rel="icon" href="/images/icon-logo.png">
 <link rel="stylesheet" href="/css/admin/dashboard.css">
 <title>Dashboard - quản lý kho hàng</title>
+
+<style>
+.card-text::after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 1px;
+	background-color: white;
+	margin-top: 5px;
+}
+
+.card-custom-1 {
+	background-color: #87CEFA;
+}
+
+.card-custom-2 {
+	background-color: #FF0000;
+}
+
+.card-custom-3 {
+	background-color: #EEE8AA;
+}
+
+.card-custom-4 {
+	background-color: #00FA9A;
+}
+
+.card-custom-5 {
+	background-color: #FFA500;
+}
+
+.card-custom-6 {
+	background-color: #E6E6FA;
+}
+
+.card-custom-7 {
+	background-color: #87CEFA;
+}
+
+.card-custom-8 {
+	background-color: #ffff99;
+}
+
+.card {
+	border-radius: 20px;
+	margin-bottom: 40px;
+}
+
+.card-body {
+	border-radius: 6px;
+	padding: 20px;
+}
+
+.card-text {
+	text-align: center;
+}
+
+.card-text {
+	color: white;
+	font-weight: bold;
+}
+
+.icon-title {
+	display: flex;
+	align-items: center;
+}
+
+.icon {
+	color: white;
+	margin-right: 120px; /* Khoảng cách giữa biểu tượng và tiêu đề */
+	margin-top: -10px;
+}
+
+.line {
+	width: 100%;
+	height: 1px;
+	background-color: white;
+	margin-top: 5px;
+}
+
+.icon-title {
+	position: relative;
+}
+
+.line {
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 1px;
+	background-color: white;
+	margin-top: 15px;
+}
+
+.icon-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.square {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 60px; /* Đặt chiều rộng của hình vuông */
+	height: 30px; /* Đặt chiều cao của hình vuông */
+	background-color: salmon; /* Màu nền của hình vuông */
+	border-radius: 5px; /* Bo tròn viền */
+}
+
+.icon2 {
+	margin-right: 10px; /* Khoảng cách giữa biểu tượng và chữ */
+	font-size: 16px; /* Giảm kích thước của biểu tượng */
+}
+
+.action {
+	font-size: 12px; /* Giảm kích thước của chữ */
+	color: white; /* Màu chữ trắng */
+}
+</style>
 </head>
 <body>
 	<div th:insert="~{/admin/layout/menu}"></div>
-	
+
 	<div id="containerDashboard">
 		<div class="dashboard">
-			<span style="font-size: 50px;">Dashboard</span>
-			<br>
-			<button class="btn btn-primary" style="width: 300px; height: 300px;">thống kê</button>
-			<button class="btn btn-success" style="width: 300px; height: 300px;">thống kê</button>
-			<button class="btn btn-primary" style="width: 300px; height: 300px;">thống kê</button>
-			<button class="btn btn-success" style="width: 300px; height: 300px;">thống kê</button>
-			
+				<h1>Thông kê</h1>
+				<div class="row">
+
+					<div class="col-md-3">
+						<div class="card ">
+							<div class="overlay">
+								<div class="card-body card-custom-1">
+									<div class="icon-title">
+										<span class="icon"><i class="fas fa-user"></i></span>
+										<!-- Biểu tượng (icon) -->
+										<h5 class="card-title"
+											style="color: white; font-weight: bold;">Khách hàng</h5>
+										<!-- Tiêu đề -->
+
+										<hr class="line" />
+										<!-- Đường ngang -->
+
+									</div>
+									<br>
+
+
+
+									<p class="card-text" th:if="${totalCustormers != null}">
+										Số lượng: <span th:text="${totalCustormers}"></span>
+									</p>
+
+									<div class="icon-container"  th:if="${totalCustormers  != null}">
+										<div class="square">
+											<span class="icon2"><i class="fas fa-eye"></i></span>
+											<h5 class="action">Xem</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-md-3 ">
+						<div class="card ">
+							<div class="overlay">
+								<div class="card-body card-custom-2">
+									<div class="icon-title">
+										<span class="icon"><i class="fas fa-user"></i></span>
+										<!-- Biểu tượng (icon) -->
+										<h5 class="card-title"
+											style="color: white; font-weight: bold;">Nhan vien</h5>
+										<!-- Tiêu đề -->
+
+										<hr class="line" />
+										<!-- Đường ngang -->
+
+									</div>
+									<br>
+
+
+
+									<!-- Hiển thị số lượng khách hàng -->
+									<p class="card-text">
+										Số lượng: 13<span th:text="${customerCount}"></span>
+									</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card ">
+							<div class="overlay">
+								<div class="card-body card-custom-3">
+									<div class="icon-title">
+										<span class="icon"><i class="fas fa-user"></i></span>
+										<!-- Biểu tượng (icon) -->
+										<h5 class="card-title"
+											style="color: white; font-weight: bold;">Don Hang</h5>
+										<!-- Tiêu đề -->
+
+										<hr class="line" />
+										<!-- Đường ngang -->
+
+									</div>
+									<br>
+
+									<p class="card-text" th:if="${totalOrders != null}">
+										Số lượng: <span th:text="${totalOrders}"></span>
+									</p>
+
+									<div class="icon-container"  th:if="${totalOrders != null}">
+										<div class="square">
+											<span class="icon2"><i class="fas fa-eye"></i></span>
+											<h5 class="action">Xem</h5>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<div class="overlay">
+								<div class="card-body card-custom-4">
+									<div class="icon-title">
+										<span class="icon"><i class="fas fa-user"></i></span>
+										<!-- Biểu tượng (icon) -->
+										<h5 class="card-title"
+											style="color: white; font-weight: bold;">Phuong Tiên</h5>
+										<!-- Tiêu đề -->
+
+										<hr class="line" />
+										<!-- Đường ngang -->
+
+									</div>
+									<br>
+
+									<p class="card-text" th:if="${totalPT != null}">
+										Số lượng: <span th:text="${totalPT}"></span>
+									</p>
+
+									<div class="icon-container"  th:if="${totalPT != null}">
+										<div class="square">
+											<span class="icon2"><i class="fas fa-eye"></i></span>
+											<h5 class="action">Xem</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-4">
+					<div class="col-md-3">
+						<div class="card ">
+							<div class="overlay">
+								<div class="card-body card-custom-5">
+									<div class="icon-title">
+										<span class="icon"><i class="fas fa-user"></i></span>
+										<!-- Biểu tượng (icon) -->
+										<h5 class="card-title"
+											style="color: white; font-weight: bold;">Đóng gói</h5>
+										<!-- Tiêu đề -->
+
+										<hr class="line" />
+										<!-- Đường ngang -->
+
+									</div>
+									<br>
+
+
+
+									<p class="card-text" th:if="${totalDg != null}">
+										Số lượng: <span th:text="${totalDg}"></span>
+									</p>
+
+									<div class="icon-container"  th:if="${totalDg != null}">
+										<div class="square">
+											<span class="icon2"><i class="fas fa-eye"></i></span>
+											<h5 class="action">Xem</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<div class="overlay">
+								<div class="card-body card-custom-6">
+									<div class="icon-title">
+										<span class="icon"><i class="fas fa-user"></i></span>
+										<!-- Biểu tượng (icon) -->
+										<h5 class="card-title"
+											style="color: white; font-weight: bold;">Kho Hàng</h5>
+										<!-- Tiêu đề -->
+
+										<hr class="line" />
+										<!-- Đường ngang -->
+
+									</div>
+									<br>
+
+
+
+									<p class="card-text" th:if="${totalKh != null}">
+										Số lượng: <span th:text="${totalKh}"></span>
+									</p>
+
+									<div class="icon-container"  th:if="${totalKh != null}">
+										<div class="square">
+											<span class="icon2"><i class="fas fa-eye"></i></span>
+											<h5 class="action">Xem</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<div class="overlay">
+								<div class="card-body card-custom-7">
+									<div class="icon-title">
+										<span class="icon"><i class="fas fa-user"></i></span>
+										<!-- Biểu tượng (icon) -->
+										<h5 class="card-title"
+											style="color: white; font-weight: bold;">Don Hang</h5>
+										<!-- Tiêu đề -->
+
+										<hr class="line" />
+										<!-- Đường ngang -->
+
+									</div>
+									<br>
+
+
+
+									<!-- Hiển thị số lượng khách hàng -->
+									<p class="card-text">
+										Số lượng: 13<span th:text="${customerCount}"></span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<div class="overlay">
+								<div class="card-body card-custom-3">
+									<div class="icon-title">
+										<span class="icon"><i class="fas fa-user"></i></span>
+										<!-- Biểu tượng (icon) -->
+										<h5 class="card-title"
+											style="color: white; font-weight: bold;">Don Hang</h5>
+										<!-- Tiêu đề -->
+
+										<hr class="line" />
+										<!-- Đường ngang -->
+
+									</div>
+									<br>
+
+
+
+									<!-- Hiển thị số lượng khách hàng -->
+									<p class="card-text">
+										Số lượng: 13<span th:text="${customerCount}"></span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 		</div>
 	</div>
 </body>
