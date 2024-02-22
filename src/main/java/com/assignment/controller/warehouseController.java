@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -90,29 +91,30 @@ public class warehouseController {
 		return "search-key";
 		}
 //	//
+	//
+	@RequestMapping("/warehouse/create")
+	public String create(Model model, WareHouse WHitem ,BindingResult result) 
+			{
+		if(result.hasErrors()) {
+			model.addAttribute("message", "một số testfield chưa dc xử lí!!");
+		}else {
+			Warehousedao.save(WHitem);
+			
+		}
+		
+	return "redirect:/warehouses";
+	}
 //	//
-//	@RequestMapping("/warehouse/create")
-//	public String create(Model model, WareHouse item ,BindingResult result) 
-//			{
-//		if(result.hasErrors()) {
-//			model.addAttribute("message", "một số testfield chưa dc xử lí!!");
-//		}else {
-//			Warehousedao.save(item);
-//			
-//		}
-//		
-//	return "redirect:/admin/layout/List_warehouse";
-//	}
+	@RequestMapping("/warehouse/update")
+	public String update(WareHouse WHitem) {
+		System.out.println(WHitem.getId());
+		Warehousedao.save(WHitem);
+	return "redirect:/warehouse/edit/" + WHitem.getId();
+	}
 //	//
-//	@RequestMapping("/warehouse/update")
-//	public String update(WareHouse item) {
-//		Warehousedao.save(item);
-//	return "redirect:/warehouse/edit/" + item.getId();
-//	}
-//	//
-//	@RequestMapping("/warehouse/delete/{id}")
-//	public String create(@PathVariable("id") Long id) {
-//		Warehousedao.deleteById(id);
-//	return "redirect:/admin/layout/List_warehouse";
-//	}
+	@GetMapping("/warehouse/delete")
+	public String delete(@RequestParam("idwh") Long id) {
+		Warehousedao.deleteById(id);
+	return "admin/warehouses";
+	}
 }

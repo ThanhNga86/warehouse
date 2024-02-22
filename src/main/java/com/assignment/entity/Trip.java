@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,6 +38,6 @@ public class Trip implements Serializable{
 	private User user;
 	@OneToMany(mappedBy = "trip")
 	private List<Order> listOrders;
-	@OneToOne(mappedBy = "trip")
+	@OneToOne(mappedBy = "trip", cascade = CascadeType.REMOVE)
 	private Traffic traffic;
 }

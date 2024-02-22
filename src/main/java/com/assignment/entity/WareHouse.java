@@ -3,6 +3,7 @@ package com.assignment.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,8 +33,8 @@ public class WareHouse implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;
-	@OneToMany(mappedBy = "wareHouse")
+	@OneToMany(mappedBy = "wareHouse", cascade =CascadeType.REMOVE )
 	private List<Package> listPackages;
-	@OneToMany(mappedBy = "wareHouse")
+	@OneToMany(mappedBy = "wareHouse", cascade = CascadeType.REMOVE)
 	private List<Traffic> listTraffics;
 }
