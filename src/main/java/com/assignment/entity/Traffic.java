@@ -3,8 +3,21 @@ package com.assignment.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+<<<<<<< HEAD
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+=======
+<<<<<<< HEAD
+
+import jakarta.persistence.CascadeType;
+
+import jakarta.persistence.Column;
+
+=======
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+>>>>>>> 1b032285f61fb40100030f1f39afd398ce2a4c23
+>>>>>>> 4795f699701d821455891a8edca979cbb65a144d
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
