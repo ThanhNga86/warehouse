@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,15 +23,6 @@ public class warehouseController {
 	WareHouseRepository Warehousedao;
 	@Autowired
 	SessionService session;
-	
-	@RequestMapping("/addWareHouse")
-	public String addwarehouse() {
-//		WareHouse WHitem = new WareHouse();
-//		model.addAttribute("WHitem", WHitem);
-//		List<WareHouse> WHitems = Warehousedao.findAll();
-//		model.addAttribute("WHitems", WHitems);
-		return "admin/warehouse/warehouse";
-	}
 	
 	@GetMapping("/warehouses")
 	public String addList_warehouse(Model model) {
@@ -69,13 +59,20 @@ public class warehouseController {
 		
 		WareHouse WHitem = Warehousedao.findById(id).get();
 		String idWhiem = String.valueOf(WHitem.getId());
+		model.addAttribute("idWhiem", idWhiem);
 		model.addAttribute("WHitem", WHitem);
 		List<WareHouse> WHitems = Warehousedao.findAll();
 		model.addAttribute("WHitems", WHitems);
 	return "admin/warehouse/warehouse";
 	}
-	//
-	//
+	
+	@GetMapping("/warehouse/edit")
+	public String edit(Model model) {
+		List<WareHouse> WHitems = Warehousedao.findAll();
+		model.addAttribute("idWhiem", WHitems.get(0).getId());
+		model.addAttribute("WHitem", WHitems.get(0));
+		return "admin/warehouse/warehouse";
+	}
 	
 	@RequestMapping("/search-key")
 	public String searchAndPage(Model model, 

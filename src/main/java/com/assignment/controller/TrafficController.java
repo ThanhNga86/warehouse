@@ -27,10 +27,10 @@ import com.assignment.repo.WareHouseRepository;
 public class TrafficController {
 	@Autowired
 	TrafficRepository TFdao;
-	
+
 	@Autowired
 	WareHouseRepository WHdao;
-	
+
 	@Autowired
 	TripRepository Tdao;
 
@@ -55,7 +55,7 @@ public class TrafficController {
 		// Biến items: hiển thị lên bảng
 		return "admin/traffic/menu_traffic";
 	}
-	
+
 //	// show trip
 //	@ModelAttribute(name= "trips")
 //	public List<Trip> getTrips(){
@@ -90,30 +90,32 @@ public class TrafficController {
 //		}
 //	//
 	//
-		@RequestMapping("/traffic/create")
-		public String create(Model model,@ModelAttribute("TFitem") Traffic TFitem ,BindingResult result) 
-				{
-			if(result.hasErrors()) {
-				model.addAttribute("message", "một số testfield chưa dc xử lí!!");
-			}else {
+	@RequestMapping("/traffic/create")
+	public String create(Model model, @ModelAttribute("TFitem") Traffic TFitem, BindingResult result) {
+		if (result.hasErrors()) {
+			model.addAttribute("message", "một số testfield chưa dc xử lí!!");
+		} else {
+			if (TFitem.getId() != null) {
 				TFdao.save(TFitem);
-				model.addAttribute("message", "create thành công");
 			}
-			
-		return "redirect:/";
+			model.addAttribute("message", "create thành công");
 		}
+
+		return "redirect:/";
+	}
+
 	//
 	@RequestMapping("/traffic/update")
 	public String update(Traffic TFitem) {
 		TFdao.save(TFitem);
-	return "traffic/edit/" + TFitem.getId();
+		return "traffic/edit/" + TFitem.getId();
 	}
+
 	//
-	@RequestMapping ("/traffic/delete/{id}")
-	public String delete(@PathVariable(name = "id") Long id) { 
+	@RequestMapping("/traffic/delete/{id}")
+	public String delete(@PathVariable(name = "id") Long id) {
 		TFdao.deleteById(id);
-	return "admin/traffic/menu_traffic";
+		return "admin/traffic/menu_traffic";
 	}
-	
-	
+
 }
