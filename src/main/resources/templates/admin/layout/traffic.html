@@ -10,13 +10,13 @@
 	<!--th:action="${TFitem}" th:object="${TFitems} "-->
 	<form method="post">
 		<div class="form-floating mb-3">
-		  <input type="text" class="form-control" id="id" placeholder="id" th:value="${TFitem.id}">
+		  <input type="text" class="form-control" name="id" id="id" placeholder="id" th:value="${TFitem.id}">
 		  <label for="id">id</label>
 		</div>
 		
 		
 	<div class="form-floating mb-3">
-	  <input type="text" class="form-control" id="capacity" placeholder="capacity" th:value="${TFitem.capacity}">
+	  <input type="text" class="form-control" name="capacity" id="capacity" placeholder="capacity" th:value="${TFitem.capacity}">
 	  <label for="capacity">capacity</label>
 	</div>
 	
@@ -26,17 +26,17 @@
 	</div>
 	
 	<div class="form-floating mb-3">
-	  <input type="test" class="form-control" id="name" placeholder="name" th:value="${TFitem.name}">
+	  <input type="test" class="form-control" name="name" id="name" placeholder="name" th:value="${TFitem.name}">
 	  <label for="name">name</label>
 	</div>
 	
 	<div class="form-floating">
-	  <input type="text" class="form-control" id="status" placeholder="status" th:value="${TFitem.status}">
+	  <input type="text" class="form-control" name="status" id="status" placeholder="status" th:value="${TFitem.status}">
 	  <label for="status">status</label>
 	</div>
 	
 	<div class="form-floating mb-3">
-	  <input type="text" class="form-control" id="type" placeholder="type" th:value="${TFitem.type}">
+	  <input type="text" class="form-control" name="type" id="type" placeholder="type" th:value="${TFitem.type}">
 	  <label for="type">type</label>
 	</div>
 	
@@ -47,14 +47,14 @@
 	  </select>
 	</div>-->
 	<div class="form-floating mb-3">
-	  <input th:if="${TFitem.trip != null}" type="text" class="form-control" id="trip_id" placeholder="trip_id" th:value="${TFitem.trip.id}">
-	  <input th:if="${TFitem.trip == null}" type="text" class="form-control" id="trip_id" placeholder="trip_id">
+	  <input th:if="${TFitem.trip != null}" name="trip" type="text" class="form-control" id="trip_id" placeholder="trip_id" th:value="${TFitem.trip.id}">
+	  <input th:if="${TFitem.trip == null}" name="trip" type="text" class="form-control" id="trip_id" placeholder="trip_id">
 	  <label for="trip_id">trip_id</label>
 	</div>
 	
 	<div class="form-floating mb-3">
-	  <input th:if="${TFitem.wareHouse != null}" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">
-	  <input th:if="${TFitem.wareHouse == null}" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id">
+	  <input th:if="${TFitem.wareHouse != null}" name="wareHouse" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">
+	  <input th:if="${TFitem.wareHouse == null}" name="wareHouse" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id">
 	  <label for="warehouse_id">warehouse_id</label>
 	</div>
 	

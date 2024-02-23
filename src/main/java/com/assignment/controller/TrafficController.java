@@ -1,5 +1,6 @@
 package com.assignment.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -107,8 +108,9 @@ public class TrafficController {
 	//
 	@RequestMapping("/traffic/update")
 	public String update(Traffic TFitem) {
+		TFitem.setDateBuy(new Date());
 		TFdao.save(TFitem);
-		return "traffic/edit/" + TFitem.getId();
+		return "redirect:/traffic/edit/" + TFitem.getId();
 	}
 
 	//
