@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="https://www.thymeleaf.org/">
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,35 +9,35 @@
 </head>
 <body>
 	<!--th:action="${TFitem}" th:object="${TFitems} "-->
-	<form method="post">
+	<form method="post" >
 		<div class="form-floating mb-3">
-		  <input type="text" class="form-control" id="id" placeholder="id" th:value="${TFitem.id}">
+		  <input type="text" class="form-control" name="id" placeholder="id" th:value="${TFitem.id}">
 		  <label for="id">id</label>
 		</div>
 		
 		
 	<div class="form-floating mb-3">
-	  <input type="text" class="form-control" id="capacity" placeholder="capacity" th:value="${TFitem.capacity}">
+	  <input type="text" class="form-control" name="capacity" placeholder="capacity" th:value="${TFitem.capacity}">
 	  <label for="capacity">capacity</label>
 	</div>
 	
 	<div class="form-floating">
-	  <input type="text" class="form-control" id="date_buy" placeholder="date_buy" th:value="${TFitem.dateBuy}">
-	  <label for="date_buy">date_buy</label>
+	  <input type="text" class="form-control" name="dateBuy" placeholder="date_buy" th:value="${TFitem.dateBuy}">
+	  <label for="dateBuy">date_buy</label>
 	</div>
 	
 	<div class="form-floating mb-3">
-	  <input type="test" class="form-control" id="name" placeholder="name" th:value="${TFitem.name}">
+	  <input type="test" class="form-control" name="name" placeholder="name" th:value="${TFitem.name}">
 	  <label for="name">name</label>
 	</div>
 	
 	<div class="form-floating">
-	  <input type="text" class="form-control" id="status" placeholder="status" th:value="${TFitem.status}">
+	  <input type="text" class="form-control" name="status" placeholder="status" th:value="${TFitem.status}">
 	  <label for="status">status</label>
 	</div>
 	
 	<div class="form-floating mb-3">
-	  <input type="text" class="form-control" id="type" placeholder="type" th:value="${TFitem.type}">
+	  <input type="text" class="form-control" name="type" placeholder="type" th:value="${TFitem.type}">
 	  <label for="type">type</label>
 	</div>
 	
@@ -47,26 +48,27 @@
 	  </select>
 	</div>-->
 	<div class="form-floating mb-3">
-	  <input th:if="${TFitem.trip != null}" type="text" class="form-control" id="trip_id" placeholder="trip_id" th:value="${TFitem.trip.id}">
-	  <input th:if="${TFitem.trip == null}" type="text" class="form-control" id="trip_id" placeholder="trip_id">
+	  <input th:if="${TFitem.trip != null}" type="text" class="form-control" id="trip_id" name="trip" placeholder="trip_id" th:value="${TFitem.trip.id}">
+	  <input th:if="${TFitem.trip == null}" type="text" class="form-control" id="trip_id" name="trip" placeholder="trip_id">
 	  <label for="trip_id">trip_id</label>
 	</div>
 	
 	<div class="form-floating mb-3">
-	  <input th:if="${TFitem.wareHouse != null}" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">
-	  <input th:if="${TFitem.wareHouse == null}" type="text" class="form-control" id="warehouse_id" placeholder="warehouse_id">
+	  <input th:if="${TFitem.wareHouse != null}" type="text" class="form-control" id="warehouse_id" name="wareHouse" placeholder="warehouse_id" th:value="${TFitem.wareHouse.id}">
+	  <input th:if="${TFitem.wareHouse == null}" type="text" class="form-control" id="warehouse_id" name="wareHouse" placeholder="warehouse_id">
 	  <label for="warehouse_id">warehouse_id</label>
 	</div>
-	
+	<h1 th:text="${message}"></h1>
 	<div style="text-align: center;">
-		<a class="btn btn-secondary" th:href="@{/traffic/create}">thêm</a>
-		<button type="submit" class="btn btn-secondary" formaction="/traffic/delete/{id}(id=${TFitem.id})">xóa</button>
+		<button type="submit" class="btn btn-secondary" formaction="/traffic/create">Thêm</button>
+		<button type="submit" class="btn btn-secondary" formaction="/traffic/delete">xóa</button>
 		<button type="submit" class="btn btn-secondary" formaction="/traffic/update">Sửa</button>
 	</div>
 	</form>
-	<form>
-		<input type="text" id="name">
-		<button type="button" for="name">tìm kiếm</button>
+	
+	<form action="/searchTF" method="post">
+		<input name="id" th:value="${param.id}" placeholder="ID phương tiện">
+		<button>tìm kiếm</button>
 	</form>
 	<table class="table table-bordered">
 		<tr>
@@ -96,10 +98,10 @@
 		</tr>
 	</c:forEach>
 	</table>
-	<button type="button"><a href="/search-and-page?p=0">First</a></button>
-	<button type="button"><a href="/search-and-page?p=${page.number-1}">Previous</a></button>
-	<button type="button"><a href="/search-and-page?p=${page.number+1}">Next</a></button>
-	<button type="button"><a href="/search-and-page?p=${page.totalPages-1}">Last</a></button>
+	<!--<button type="button" class="btn btn-secondary"><a th:href="@{/traffic/page(p=0)}">First</a></button>
+	<button type="button" class="btn btn-secondary"><a >Previous</a></button>
+	<button type="button" class="btn btn-secondary"><a >Next</a></button>
+	<button type="button" class="btn btn-secondary"><a >Last</a></button>-->
 	
 	
 	

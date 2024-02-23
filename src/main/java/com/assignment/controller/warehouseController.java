@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.assignment.entity.Traffic;
 import com.assignment.entity.WareHouse;
 import com.assignment.repo.WareHouseRepository;
 
@@ -41,7 +42,7 @@ public class warehouseController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 1);
 		Page<WareHouse> page = Warehousedao.findAll(pageable);
 		model.addAttribute("page", page);
-	return "admin/layout/List_warehouse";
+	return "redirect:/warehouses";
 	}
 	//
 //	@GetMapping("/warehouse/addWareHouse")
@@ -67,27 +68,26 @@ public class warehouseController {
 	return "admin/warehouse/warehouse";
 	}
 	
-	@GetMapping("/warehouse/edit")
-	public String edit(Model model) {
-		List<WareHouse> WHitems = Warehousedao.findAll();
-		model.addAttribute("idWhiem", WHitems.get(0).getId());
-		model.addAttribute("WHitem", WHitems.get(0));
-		return "admin/warehouse/warehouse";
-	}
+//	@GetMapping("/warehouse/edit")
+//	public String edit(Model model) {
+//		List<WareHouse> WHitems = Warehousedao.findAll();
+//		model.addAttribute("idWhiem", WHitems.get(0).getId());
+//		model.addAttribute("WHitem", WHitems.get(0));
+//		return "admin/warehouse/warehouse";
+//	}
 	
-	@RequestMapping("/search-key")
-	public String searchAndPage(Model model, 
-	@RequestParam("keywords") Optional<String> kw,
-	@RequestParam("p") Optional<Integer> p) {
+	@RequestMapping("/searchWH")
+	public String search(Model model,
+	@RequestParam("id") Long id	) {
 		
-		String kwords = kw.orElse(session.get("keywords"));
-		session.set("keywords", kwords);
-		Pageable pageable = PageRequest.of(p.orElse(0), 2);
-		Page<WareHouse> page = Warehousedao.findAllByNameLike("%"+kwords+"%", pageable);
-		model.addAttribute("page", page);
-		return "search-key";
+		Optional<WareHouse> WHitems = Warehousedao.findById(id);
+		WareHouse WHitem = Warehousedao.findById(id).get();
+		model.addAttribute("WHitem", WHitem);
+		model.addAttribute("WHitems", WHitems);
+		
+		
+		return "redirect:/warehouse/edit/" + WHitem.getId();
 		}
-//	//
 	//
 	@RequestMapping("/warehouse/create")
 	public String create(Model model, WareHouse WHitem ,BindingResult result) 

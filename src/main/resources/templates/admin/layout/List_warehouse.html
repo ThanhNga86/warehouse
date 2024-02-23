@@ -8,12 +8,13 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<form action="search-key" method="post">
-		<input name="keywords" th:value="*{keywords}">
-			<button>Search</button>
+	<form action="/searchWH" method="post">
+		<input name="id" th:value="${param.id}" placeholder="ID Kho">
+		<button>tìm kiếm</button>
 	</form>
 	<table  border="1" style="width:100% ; font-size: large; text : center;">
 		<tr>
+			<td>ID</td>
 			<td>Address</td>
 			<td>capacity</td>
 			<td>name</td>
@@ -24,7 +25,7 @@
 	<c:forEach th:each="item :${WHitems}">
 		
 		<tr>
-			
+			<td><span th:text="${item.id}"></span></td>
 			<td><span th:text="${item.address}"></span></td>
 			<td><span th:text="${item.capacity}"></span></td>
 			<td><span th:text="${item.name}"></span></td>
@@ -34,14 +35,12 @@
 		</tr>
 	</c:forEach>
 	</table>
-	<button type="button"><a href="/List_warehouse?p=0">First</a></button>
+	<!--<button type="button"><a href="/List_warehouse?p=0">First</a></button>
 	<button type="button"><a href="/List_warehouse?p=${page.number-1}">Previous</a></button>
 	<button type="button"><a href="/List_warehouse?p=${page.number+1}">Next</a></button>
-	<button type="button"><a href="/List_warehouse?p=${page.totalPages-1}">Last</a></button>
+	<button type="button"><a href="/List_warehouse?p=${page.totalPages-1}">Last</a></button>-->
 	
-	
-	
-	
+
 
 </body>
 </html>

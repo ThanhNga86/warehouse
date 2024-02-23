@@ -23,6 +23,8 @@ import com.assignment.repo.TrafficRepository;
 import com.assignment.repo.TripRepository;
 import com.assignment.repo.WareHouseRepository;
 
+
+
 @Controller
 public class TrafficController {
 	@Autowired
@@ -33,16 +35,19 @@ public class TrafficController {
 
 	@Autowired
 	TripRepository Tdao;
+	
+	@Autowired
+	SessionService session;
 
 	//
-	@RequestMapping("/traffic/page")
-	public String paginate(Model model, @RequestParam("p") Optional<Integer> p) {
-
-		Pageable pageable = PageRequest.of(p.orElse(0), 3);
-		Page<Traffic> page = TFdao.findAll(pageable);
-		model.addAttribute("page", page);
-		return "admin/traffic/menu_traffic";
-	}
+//	@RequestMapping("/traffic/page")
+//	public String paginate(Model model, @RequestParam("p") Optional<Integer> p) {
+//
+//		Pageable pageable = PageRequest.of(p.orElse(0), 3);
+//		Page<Traffic> page = TFdao.findAll(pageable);
+//		model.addAttribute("TFitems", page);
+//		return "admin/traffic/menu_traffic";
+//	}
 
 	//
 	@GetMapping("/traffic")
@@ -56,11 +61,7 @@ public class TrafficController {
 		return "admin/traffic/menu_traffic";
 	}
 
-//	// show trip
-//	@ModelAttribute(name= "trips")
-//	public List<Trip> getTrips(){
-//		return Tdao.findAll();
-//	}
+
 
 	//
 	@RequestMapping("/traffic/edit/{id}")
@@ -74,48 +75,49 @@ public class TrafficController {
 		return "admin/traffic/menu_traffic";
 	}
 	//
-	//
 
-//	@RequestMapping("/search-key")
-//	public String searchAndPage(Model model, 
-//	@RequestParam("keywords") Optional<String> kw,
-//	@RequestParam("p") Optional<Integer> p) {
-//		
-//		String kwords = kw.orElse(session.get("keywords"));
-//		session.set("keywords", kwords);
-//		Pageable pageable = PageRequest.of(p.orElse(0), 2);
-//		Page<WareHouse> page = Warehousedao.findAllByNameLike("%"+kwords+"%", pageable);
-//		model.addAttribute("page", page);
-//		return "search-key";
-//		}
-//	//
+
+	
+	@RequestMapping("/searchTF")
+	public String search(Model model,
+	@RequestParam("id") Long id	) {
+		
+		Optional<Traffic> TFitems = TFdao.findById(id);
+		Traffic TFitem = TFdao.findById(id).get();
+		model.addAttribute("TFitem", TFitem);
+		model.addAttribute("TFitems", TFitems);
+		
+		
+		return "redirect:/traffic/edit/" + TFitem.getId();
+		}
+	
+	//
 	//
 	@RequestMapping("/traffic/create")
-	public String create(Model model, @ModelAttribute("TFitem") Traffic TFitem, BindingResult result) {
-		if (result.hasErrors()) {
-			model.addAttribute("message", "một số testfield chưa dc xử lí!!");
-		} else {
-			if (TFitem.getId() != null) {
+	public String create(Model model,Traffic TFitem, BindingResult result) {
+		
+			
 				TFdao.save(TFitem);
-			}
+				
 			model.addAttribute("message", "create thành công");
-		}
+	
 
-		return "redirect:/";
+		return "redirect:/traffic";
 	}
 
 	//
 	@RequestMapping("/traffic/update")
 	public String update(Traffic TFitem) {
+		System.out.println(TFitem.getId());
 		TFdao.save(TFitem);
-		return "traffic/edit/" + TFitem.getId();
+		return "redirect:/traffic/edit/" + TFitem.getId();
 	}
 
 	//
-	@RequestMapping("/traffic/delete/{id}")
-	public String delete(@PathVariable(name = "id") Long id) {
+	@RequestMapping("/traffic/delete")
+	public String delete(@RequestParam("id") Long id) {
 		TFdao.deleteById(id);
-		return "admin/traffic/menu_traffic";
+		return "redirect:/traffic";
 	}
 
 }
