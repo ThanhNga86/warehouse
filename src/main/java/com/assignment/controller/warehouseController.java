@@ -110,8 +110,8 @@ public class warehouseController {
 	}
 //	//
 	@GetMapping("/warehouse/delete")
-	public String delete(@RequestParam("idwh") Long id) {
+	public String delete(@RequestParam("id") Long id) {
 		Warehousedao.deleteById(id);
-	return "admin/warehouses";
+	return "redirect:/warehouses";
 	}
 }
