@@ -3,6 +3,7 @@ package com.assignment.controller;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,8 @@ public class doiPassController {
 	HttpServletRequest request;
 	@Autowired
 	HttpServletResponse response;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/doimatkhau/{id}")
 	public String doipass(Model model,@PathVariable("id") String taikhoan) {
@@ -43,13 +46,13 @@ public class doiPassController {
 		try {
 			User kh = userdao.findById(taikhoan).get();
 		model.addAttribute("item",kh);
-		if(!kh.getPassword().equals(matkhau)) {
+		if(!passwordEncoder.matches(matkhau, kh.getPassword())) {
 			model.addAttribute("message","Vui lòng đúng nhập mật khẩu");
 		}else {
 			if(!matkhaumoi.equals(matkhaulai)) {
 				model.addAttribute("message","Mật khẩu không trùng khớp");
 			}else {
-				kh.setPassword(matkhaulai);
+				kh.setPassword(passwordEncoder.encode(matkhaumoi));
 				userdao.save(kh);
 				model.addAttribute("message","Thành công");
 			}

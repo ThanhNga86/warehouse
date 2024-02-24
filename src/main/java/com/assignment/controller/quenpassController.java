@@ -3,6 +3,7 @@ package com.assignment.controller;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +15,13 @@ import com.assignment.entity.User;
 import com.assignment.service.MailerService;
 
 @Controller
-public class quenPassController {
+public class quenpassController {
 	@Autowired
 	UserDAO userdao;
 	@Autowired
 	MailerService mailer;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/quenmatkhau")
 	public String quenpass(Model model) {
@@ -43,7 +46,7 @@ public class quenPassController {
 				model.addAttribute("message","Tài khoản và email không phù hợp !");
 			}else {
 				model.addAttribute("message","Vui lòng vào email để nhận mật khẩu mới !");
-				kh.setPassword(body);
+				kh.setPassword(passwordEncoder.encode(body));
 				userdao.save(kh);
 				MailInfo mail = new MailInfo();
 				mail.setTo(to);

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.assignment.DAO.UserDAO;
+import com.assignment.entity.Role;
 import com.assignment.entity.User;
 
 @Controller
 public class dangkyController {
 	@Autowired
 	UserDAO userdao;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/register")
 	public String dangky(Model model) {
@@ -56,6 +60,9 @@ public class dangkyController {
 			}else if(kh.getPhone().matches(regexPhone) == false){
 			model.addAttribute("message", "Sai định dạng số điện thoại!!");
 			}else {
+			kh.setActive(true);
+			kh.setRole(Role.ROLE_CUSTOMER);
+			kh.setPassword(passwordEncoder.encode(password));
 			userdao.save(kh);
 			model.addAttribute("message", "đăng ký thành công!!");
 		}
