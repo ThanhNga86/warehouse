@@ -19,54 +19,57 @@
 	
 	            <form th:action="@{/register}" method="post" class="mb-md-5 mt-md-4 pb-4">
 	
-	              <h2 class="fw-bold mb-2 text-uppercase mb-5">Quên Mật Khẩu</h2>
+	              <h2 class="fw-bold mb-2 text-uppercase mb-5">Đăng Ký</h2>
 	
 	              <div class="form-outline form-white mb-4">
-	                <label class="form-label" for="typeUsername">Tên đăng nhập</label>
-	                <input type="text" id="typeUsername" name="username" class="form-control form-control-lg" />
+	                <label class="form-label" for="typeUsername">Tài khoản</label>
+	                <input type="text" id="typeUsername" name="username" class="form-control form-control-lg" th:value="${kh.username}"/>
 	              </div>
 	              
-	               <div class="form-check">
+	               <div class="form-outline form-white mb-4">
+	                <label class="form-label" for="typeEmail">Mật khẩu</label>
+	                <input type="password" id="password" name="password" class="form-control form-control-lg"  th:value="${kh.password}"/>
+	              </div>
+	              <p th:text="${message3}"></p>
+	               <div class="form-outline form-white mb-4">
+	                <label class="form-label" for="typeEmail">Nhập lại mật khẩu</label>
+	                <input type="password" id="password" name="passwordlai" class="form-control form-control-lg" />
+	              </div>
+	              
+	              
+	              <div class="form-outline form-white mb-4">
+	                <label class="form-label" for="typeUsername">Giới tính</label> <br>
 					  <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1">
 					  <label class="form-check-label" for="flexRadioDefault1">
-					    true
+					    Nam
 					  </label>
-					</div>
-					<div class="form-check">
 					  <input class="form-check-input" type="radio" name="active" id="flexRadioDefault2" checked>
 					  <label class="form-check-label" for="flexRadioDefault2">
-					    false
+					    Nữ
 					  </label>
-					</div>
+	              </div>
 	
 	             
 	              <div class="form-outline form-white mb-4">
-	                <label class="form-label" for="typeEmail">email</label>
-	                <input type="Email" id="typeEmail" name="Email" class="form-control form-control-lg" />
+	                <label class="form-label" for="typeEmail">Email</label>
+	                <input type="Email" id="typeEmail" name="email" class="form-control form-control-lg" th:value="${kh.email}" />
 	              </div>
 	              
 	               <div class="form-outline form-white mb-4">
-	                <label class="form-label" for="typeEmail">full name</label>
-	                <input type="text" id="fullname" name="fullname" class="form-control form-control-lg" />
+	                <label class="form-label" for="typeEmail">Họ và tên</label>
+	                <input type="text" id="fullname" name="fullname" class="form-control form-control-lg" th:value="${kh.fullname}" />
 	              </div>
+	              
 	              
 	              
 	               <div class="form-outline form-white mb-4">
-	                <label class="form-label" for="typeEmail">password</label>
-	                <input type="password" id="password" name="password" class="form-control form-control-lg" />
+	                <label class="form-label" for="typeEmail">Số điện thoại</label>
+	                <input type="text" id="phone" name="phone" class="form-control form-control-lg" th:value="${kh.phone}"/>
 	              </div>
-	              
-	               <div class="form-outline form-white mb-4">
-	                <label class="form-label" for="typeEmail">phone</label>
-	                <input type="text" id="phone" name="phone" class="form-control form-control-lg" />
-	              </div>
-	              
-
-	              <div class="text-danger-50 mb-3" th:if="${param.error}"> mật khẩu hoặc email không chính xác</div>
-	              <a>${message}</a>
+	              <p style="color: red; font-style: italic;" th:text="${message}"></p>
 	              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="/login">Quay lại</a></p>
 	
-	              <button class="btn btn-outline-light btn-lg px-5" type="/create">Hoàn Tất</button>
+	              <button class="btn btn-outline-light btn-lg px-5" formaction="/create">Hoàn Tất</button>
 	            </form>
 		         
 	          </div>

@@ -9,36 +9,42 @@
 </head>
 <body>
 	<!--th:action="${TFitem}" th:object="${TFitems} "-->
+	<h2 style="text-align: center;">Trang Quản Lý Phương Tiện</h2>
 	<form method="post" >
 		<div class="form-floating mb-3">
 		  <input type="text" class="form-control" name="id" placeholder="id" th:value="${TFitem.id}">
-		  <label for="id">id</label>
+		  
+		  <label for="id">Id</label>
 		</div>
 		
 		
 	<div class="form-floating mb-3">
 	  <input type="text" class="form-control" name="capacity" placeholder="capacity" th:value="${TFitem.capacity}">
-	  <label for="capacity">capacity</label>
+	
+	  <label for="capacity">Capacity</label>
 	</div>
 	
 	<div class="form-floating">
 	  <input type="text" class="form-control" name="dateBuy" placeholder="date_buy" th:value="${TFitem.dateBuy}">
-	  <label for="dateBuy">date_buy</label>
+	  <label for="dateBuy">Date_buy</label>
 	</div>
 	
 	<div class="form-floating mb-3">
 	  <input type="test" class="form-control" name="name" placeholder="name" th:value="${TFitem.name}">
-	  <label for="name">name</label>
+	 
+	  <label for="name">Name</label>
 	</div>
 	
 	<div class="form-floating">
 	  <input type="text" class="form-control" name="status" placeholder="status" th:value="${TFitem.status}">
-	  <label for="status">status</label>
+	  
+	  <label for="status">Status</label>
 	</div>
 	
 	<div class="form-floating mb-3">
 	  <input type="text" class="form-control" name="type" placeholder="type" th:value="${TFitem.type}">
-	  <label for="type">type</label>
+	
+	  <label for="type">Type</label>
 	</div>
 	
 	<!--<div class="form-floating">
@@ -72,14 +78,14 @@
 	</form>
 	<table class="table table-bordered">
 		<tr>
-			<td>id</td>
-			<td>capacity</td>
-			<td>date_buy</td>
-			<td>name</td>
-			<td>status</td>
-			<td>type</td>
-			<td>trip_id</td>
-			<td>warehouse_id</td>
+			<td>Id</td>
+			<td>Capacity</td>
+			<td>Date_buy</td>
+			<td>Name</td>
+			<td>Status</td>
+			<td>Type</td>
+			<td>Trip_id</td>
+			<td>Warehouse_id</td>
 			<td></td>
 		</tr>
 	<c:forEach th:each="item :${TFitems}">
@@ -93,7 +99,7 @@
 			<td><span th:text="${item.type}"></span></td>
 			<td><span th:text="${item.trip.id}"></span></td>
 			<td><span th:text="${item.wareHouse.id}"></span></td>
-			<td><a th:href="'/traffic/edit/'+${item.id}">Edit</a></td>
+			<td><a th:href="'/traffic/edit/'+${item.id}" class="btn btn-danger">Edit</a></td>
 			
 		</tr>
 	</c:forEach>

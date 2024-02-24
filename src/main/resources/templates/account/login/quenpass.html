@@ -31,14 +31,13 @@
 	
 	             
 	              <div class="form-outline form-white mb-4">
-	                <label class="form-label" for="typeEmail">email</label>
-	                <input type="Email" id="typeEmail" name="Email" class="form-control form-control-lg" />
+	                <label class="form-label" for="typeEmail">Email</label>
+	                <input type="Email" id="typeEmail" name="to" class="form-control form-control-lg" />
 	              </div>
-	              
 	              <div class="text-danger-50 mb-3" th:if="${param.error}"> mật khẩu hoặc email không chính xác</div>
 	              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="/login">Quay lại</a></p>
-	
-	              <button class="btn btn-outline-light btn-lg px-5" type="submit">Hoàn Tất</button>
+	              <p style="color: red; font-style: italic;" th:text="${message}"></p>
+	              <button class="btn btn-outline-light btn-lg px-5" formaction="/khachhang/quenmatkhau">Hoàn Tất</button>
 	            </form>
 		         
 	          </div>

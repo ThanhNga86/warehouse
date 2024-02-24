@@ -98,7 +98,7 @@
 				  </div>
 				
 				  <ul class="dropdown-menu dropdown-menu-end p-0 mt-2">
-				    <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
+				    <li><a class="dropdown-item" th:href="'/doimatkhau/'+${#authentication.name}">Đổi mật khẩu</a></li>
 				    <li><a class="dropdown-item" href="/account/update">Cập nhật tài khoản</a></li>
 				    <li><a class="dropdown-item" th:href="@{/logout}">Đăng xuất</a></li>
 				  </ul>
